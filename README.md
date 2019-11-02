@@ -325,12 +325,16 @@ How ro read:
     // Display the matched elements by fading them to opaque.
         $(elm).fadeIn();
 
+        elm.style.transition = "opacity 1000ms";
+        elm.style.display = "block";
+        setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+
 
     // Hide the matched elements by fading them to transparent.
         $(elm).fadeOut();
 
-        elm.style.transition = "opacity 300 ms";
-        elm.addEventListener("transitionend", () => elm.style.display = "none", {capture: false, once: true});
+        elm.style.transition = "opacity 1000ms";
+        elm.addEventListener("transitionend", () => {elm.style.display = "none"; elm.style.transition = ""}, {once: true});
         elm.style.opacity = "0";
 
 
