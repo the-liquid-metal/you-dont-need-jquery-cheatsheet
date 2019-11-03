@@ -16,9 +16,9 @@
 * http://youmightnotneedjquery.com/
 
 **How to jump to the point immediately:**
-1. press [CTRL]+[F]
-2. then type [.], then type the keyword, then type [(]
-3. then press [ENTER]
+1. press `[CTRL]+[F]`
+2. then type `[.]`, then type the keyword, then type `[(]`
+3. then press `[ENTER]`
 
 **How to read:**
 * This script is designed to be self documented. Rather than written like this:
@@ -57,23 +57,59 @@
   elm.addEventListener("click", func); // in this case is func
   ```
 
-* If you see ``` // TODO``` this means i need your help to fill this space.
+* If you see ` // TODO` this means i need your help to fill this space.
 
 **Real code reality:**
 
-We know that jQuery instance methods can act as setter and getter. In the solution
-bellow, you will see many getter written like this one `$(selector || elm || elmList).attr(attribute);`{white-space: pre-wrap;}.
-But there is no such thing like that, wright?!. The realistic is like this one
-`let pocket = $(selector || elm || elmList).attr(attribute);`{white-space: pre-wrap;} or like this one
-`if ($(selector || elm || elmList).attr(attribute)) {/* ... */}`{white-space: pre-wrap;}. The reason we
-write like that kind is to shorten the line, and reduce any possibility which
+We know that jQuery instance methods can act as setter and getter. In the solutions
+bellow, you will see many getter written like this one `$(selector || elm || elmList).attr(attribute);`.
+But there is no such thing like that, right?!. The realistic is like this one
+`let pocket = $(selector || elm || elmList).attr(attribute);` or like this one
+`if ($(selector || elm || elmList).attr(attribute)) {/* ... */}`. The reason we
+write like that kind is to shorten the line, and eliminate all possibility which
 can bloat this article.
 
-In other side, we can't avoid the fact that jQuery method has many variant, and
-it is very tolerant with it's parameter. we decided not to create a generic
-statement for this kind of problem in order to simplify the reader to digest the
-solution. The con is there is so many duplicate algorithm, but the pro is reader
-don't have to care about other statement.
+In other side, we can't avoid the fact that a particular jQuery method has many
+variant, and it is very tolerant with it's parameter. We decided not to create a
+generic statement for this kind of problem in order to simplify readers to digest
+the solution. The con is there is so many duplicate algorithm, but the pro is
+readers don't have to care about other statement.
+
+Not like vanilla js which gives you 3 kind of output (a `null`, a particular
+single object, or a collection of particular object), jQuery always gives you a
+collection. This design, guaranties you to call any instance method of its member
+item safely. This situation is not not applicable with vanilla js, you have to
+know exactly what type of the output is, and have to make additional condition.
+Unless you are sure with what you are dealing with, every solution in this article
+are not safe. The exact solutions are like this:
+```js
+$(selector || elm || elmList).attr(attribute);
+
+// unsafety if you are not sure
+attr = document.querySelector(selector).getAttribute(attribute);
+
+// safety
+pocket = document.querySelector(selector);
+if (pocket) {
+    attr = pocket.getAttribute(attribute);
+}
+
+// unsafety if you are not sure
+attr = elm.getAttribute(attribute);
+
+// safety
+if (elm) {
+    elm.getAttribute(attribute);
+}
+
+// unsafety if you are not sure
+attr = elmList[0].getAttribute(attribute);
+
+// safety
+if (elmList[0]) {
+    attr = elmList[0].getAttribute(attribute);
+}
+```
 
 
 <br/><br/>
