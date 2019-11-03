@@ -22,41 +22,53 @@ How to jump to the point immediately:
 
 How ro read:
 * if 1st and 2nd line are similar, than pick one, than pick one of 3rd or 4th line which has similar term.
-```js
-$(elm).on(eventName, func);
-$(elmList).on(eventName, func);
-
-elm.addEventListener(eventName, func);
-elmList.forEach(item => item.addEventListener(eventName, func));
-```
+  ```js
+  $(elm).on(eventName, func);
+  $(elmList).on(eventName, func);
+  
+  elm.addEventListener(eventName, func);
+  elmList.forEach(item => item.addEventListener(eventName, func));
+  ```
 
 * If there is additional line before 3rd line, include it whichever your choice.
-```js
-$(elm).blur();
-$(elmList).blur();
-
-let blur = new Event("blur");
-elm.dispatchEvent(blur);
-elmList.forEach(item => item.dispatchEvent(blur));
-```
+  ```js
+  $(elm).blur();
+  $(elmList).blur();
+  
+  let blur = new Event("blur");
+  elm.dispatchEvent(blur);
+  elmList.forEach(item => item.dispatchEvent(blur));
+  ```
 
 * If pair of 1st line is missing, than the rest of code is a replacement as a whole, until blank line.
   If there is another line(s) after blank line, it acts as alternative solution of previous one.
-```js
-$(elm).fadeOut();
+  ```js
+  $(elm).fadeOut();
+  
+  elm.style.transition = `opacity ${number}ms`;
+  elm.addEventListener("transitionend", () => {elm.style.display = "none"; elm.style.transition = ""}, {once: true});
+  elm.style.opacity = "0";
+  ```
 
-elm.style.transition = `opacity ${number}ms`;
-elm.addEventListener("transitionend", () => {elm.style.display = "none"; elm.style.transition = ""}, {once: true});
-elm.style.opacity = "0";
-```
-* This script is designed to be self documented. rather than written like this:
-```js
-elm.append(param); // param is HTMLElement or non markup string
-```
+* If operand appears as hardcoded value (whether it is string, number, boolean, or null),
+  than you shoud not change it with anykind, otherwise the behaviour/output is unpredictable.
+  ```js
+  elm.addEventListener("click", func); // in this case is "click"
+  ```
+  If operand appears as variable, than you could change it with any value with same type.
+  Confirm its type at the declaration line (at the topmost).
+  ```js
+  elm.addEventListener("click", func); // in this case is func
+  ```
+
+* This script is designed to be self documented. Rather than written like this:
+  ```js
+  elm.append(param); // param is HTMLElement or non markup string
+  ```
   it would be more elegance and natural if it written like this:
-```js
-elm.append(otherElm || nonMarkupString);
-```
+  ```js
+  elm.append(otherElm || nonMarkupString);
+  ```
   than you have to interpret it as ```elm.append(otherElm);``` or as
   ```elm.append(nonMarkupString);```
 
@@ -99,1088 +111,1088 @@ let func = function(){};
 
 
 // =============================================================================
-    $(elm).add(elm);
+$(elm).add(elm);
 
-    [...elmList].push(elm);
-    
+[...elmList].push(elm);
 
+
 // =============================================================================
-    $(elm).addBack();
+$(elm).addBack();
 
-    [...elmList].filter((item, idx, self) => idx >= self.indexOf(elm));
+[...elmList].filter((item, idx, self) => idx >= self.indexOf(elm));
 
 
 // =============================================================================
-    $(elm).addClass("new-class");
-    $(elmList).addClass("new-class");
+$(elm).addClass("new-class");
+$(elmList).addClass("new-class");
 
-    elm.classList.add("new-class");
-    elmList.forEach(item => item.classList.add("new-class"));
+elm.classList.add("new-class");
+elmList.forEach(item => item.classList.add("new-class"));
 
 
 // =============================================================================
-    $(elm).after(markupString);
-    $(elmList).after(markupString);
+$(elm).after(markupString);
+$(elmList).after(markupString);
 
-    elm.insertAdjacentHTML("afterend", markupString);
-    elmList.forEach(item => item.insertAdjacentHTML("afterend", markupString));
+elm.insertAdjacentHTML("afterend", markupString);
+elmList.forEach(item => item.insertAdjacentHTML("afterend", markupString));
 
 
 // =============================================================================
-    $(elm).ajaxComplete(func);
+$(elm).ajaxComplete(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).ajaxError(func);
+$(elm).ajaxError(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).ajaxSend(func);
+$(elm).ajaxSend(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).ajaxStart(func);
+$(elm).ajaxStart(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).ajaxStop(func);
+$(elm).ajaxStop(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).ajaxSuccess(func);
+$(elm).ajaxSuccess(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).andSelf();
+$(elm).andSelf();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).animate();
+$(elm).animate();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).append(otherElm);
+$(elm).append(otherElm);
 
-    elm.appendChild(otherElm);
-    elm.append(otherElm || nonMarkupString);
+elm.appendChild(otherElm);
+elm.append(otherElm || nonMarkupString);
 
 
 // =============================================================================
-    $(elm).appendTo(otherElm);
+$(elm).appendTo(otherElm);
 
-    otherElm.appendChild(elm);
+otherElm.appendChild(elm);
 
 
 // =============================================================================
-    $(elm).attr("placeholder");
-    $(elmList).attr("placeholder");
+$(elm).attr("placeholder");
+$(elmList).attr("placeholder");
 
-    elm.getAttribute("placeholder");
-    elmList[0].getAttribute("placeholder");
+elm.getAttribute("placeholder");
+elmList[0].getAttribute("placeholder");
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).attr("placeholder", "price");
-    $(elmList).attr("placeholder", "price");
+$(elm).attr("placeholder", "price");
+$(elmList).attr("placeholder", "price");
 
-    elm.setAttribute("placeholder", "price");
-    elmList.forEach(item => item.setAttribute("placeholder"));
+elm.setAttribute("placeholder", "price");
+elmList.forEach(item => item.setAttribute("placeholder"));
 
 
 // =============================================================================
-    $(elm).before(markupString);
-    $(elmList).before(markupString);
+$(elm).before(markupString);
+$(elmList).before(markupString);
 
-    elm.insertAdjacentHTML("beforebegin", markupString);
-    elmList.forEach(item => item.insertAdjacentHTML("beforebegin", markupString));
+elm.insertAdjacentHTML("beforebegin", markupString);
+elmList.forEach(item => item.insertAdjacentHTML("beforebegin", markupString));
 
 
 // =============================================================================
-    $(elm).bind(eventName, func);
-    $(elmList).bind(eventName, func);
+$(elm).bind(eventName, func);
+$(elmList).bind(eventName, func);
 
-    elm.addEventListener(eventName, func);
-    elmList.forEach(item => item.addEventListener(eventName, func));
+elm.addEventListener(eventName, func);
+elmList.forEach(item => item.addEventListener(eventName, func));
 
 
 // =============================================================================
-    $(elm).blur(func);
-    $(elmList).blur(func);
+$(elm).blur(func);
+$(elmList).blur(func);
 
-    elm.addEventListener("blur", func);
-    elmList.forEach(item => item.addEventListener("blur", func));
+elm.addEventListener("blur", func);
+elmList.forEach(item => item.addEventListener("blur", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).blur();
-    $(elmList).blur();
+$(elm).blur();
+$(elmList).blur();
 
-    let blur = new Event("blur");
-    elm.dispatchEvent(blur);
-    elmList.forEach(item => item.dispatchEvent(blur));
+let blur = new Event("blur");
+elm.dispatchEvent(blur);
+elmList.forEach(item => item.dispatchEvent(blur));
 
 
 // =============================================================================
-    $(elm).change(func);
-    $(elmList).change(func);
+$(elm).change(func);
+$(elmList).change(func);
 
-    elm.addEventListener("change", func);
-    elmList.forEach(item => item.addEventListener("change", func));
+elm.addEventListener("change", func);
+elmList.forEach(item => item.addEventListener("change", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).change();
-    $(elmList).change();
+$(elm).change();
+$(elmList).change();
 
-    let change = new Event("change");
-    elm.dispatchEvent(change);
-    elmList.forEach(item => item.dispatchEvent(change));
+let change = new Event("change");
+elm.dispatchEvent(change);
+elmList.forEach(item => item.dispatchEvent(change));
 
 
 // =============================================================================
-    $(elm).children();
+$(elm).children();
 
-    elm.children;
+elm.children;
 
 
 // =============================================================================
-    $(elm).clearQueue();
+$(elm).clearQueue();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).click(func);
-    $(elmList).click(func);
+$(elm).click(func);
+$(elmList).click(func);
 
-    elm.addEventListener("click", func);
-    elmList.forEach(item => item.addEventListener("click", func));
+elm.addEventListener("click", func);
+elmList.forEach(item => item.addEventListener("click", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).click(func);
-    $(elmList).click(func);
+$(elm).click(func);
+$(elmList).click(func);
 
-    let click = new Event("click");
-    elm.dispatchEvent(click);
-    elmList.forEach(item => item.dispatchEvent(click));
+let click = new Event("click");
+elm.dispatchEvent(click);
+elmList.forEach(item => item.dispatchEvent(click));
 
 
 // =============================================================================
-    $(elm).clone();
+$(elm).clone();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).closest();
+$(elm).closest();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).contents();
+$(elm).contents();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).contextmenu();
+$(elm).contextmenu();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).css("border-width", "20px");
-    $(elmList).css("border-width", "20px");
+$(elm).css("border-width", "20px");
+$(elmList).css("border-width", "20px");
 
-    elm.style.borderWidth = "20px";
-    elmList.forEach(item => item.style.borderWidth = "20px");
+elm.style.borderWidth = "20px";
+elmList.forEach(item => item.style.borderWidth = "20px");
 
 
 // =============================================================================
-    $(elm).data();
+$(elm).data();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).dblclick(func);
-    $(elmList).dblclick(func);
+$(elm).dblclick(func);
+$(elmList).dblclick(func);
 
-    elm.addEventListener("dblclick", func);
-    elmList.forEach(item => item.addEventListener("dblclick", func));
+elm.addEventListener("dblclick", func);
+elmList.forEach(item => item.addEventListener("dblclick", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).dblclick();
-    $(elmList).dblclick();
+$(elm).dblclick();
+$(elmList).dblclick();
 
-    let dblclick = new Event("dblclick");
-    elm.dispatchEvent(dblclick);
-    elmList.forEach(item => item.dispatchEvent(dblclick));
+let dblclick = new Event("dblclick");
+elm.dispatchEvent(dblclick);
+elmList.forEach(item => item.dispatchEvent(dblclick));
 
 
 // =============================================================================
-    $(elm).delay();
+$(elm).delay();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).delegate();
+$(elm).delegate();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).dequeue();
+$(elm).dequeue();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).detach();
+$(elm).detach();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).die();
+$(elm).die();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).each();
+$(elm).each();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).empty();
+$(elm).empty();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).end();
+$(elm).end();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).eq();
+$(elm).eq();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).error();
+$(elm).error();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).fadeIn();
+$(elm).fadeIn();
 
-    elm.style.transition = `opacity ${number}ms`;
-    elm.style.display = "block";
-    setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+elm.style.transition = `opacity ${number}ms`;
+elm.style.display = "block";
+setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
 
 
 // =============================================================================
-    $(elm).fadeOut();
+$(elm).fadeOut();
 
-    elm.style.transition = `opacity ${number}ms`;
-    elm.addEventListener("transitionend", () => {elm.style.display = "none"; elm.style.transition = ""}, {once: true});
-    elm.style.opacity = "0";
+elm.style.transition = `opacity ${number}ms`;
+elm.addEventListener("transitionend", () => {elm.style.display = "none"; elm.style.transition = ""}, {once: true});
+elm.style.opacity = "0";
 
 
 // =============================================================================
-    $(elm).fadeTo();
+$(elm).fadeTo();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).fadeToggle();
+$(elm).fadeToggle();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).filter();
+$(elm).filter();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).find();
+$(elm).find();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).finish();
+$(elm).finish();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).first();
+$(elm).first();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).focus(func);
-    $(elmList).focus(func);
+$(elm).focus(func);
+$(elmList).focus(func);
 
-    elm.addEventListener("focus", func);
-    elmList.forEach(item => item.addEventListener("focus", func));
+elm.addEventListener("focus", func);
+elmList.forEach(item => item.addEventListener("focus", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).focus();
-    $(elmList).focus();
+$(elm).focus();
+$(elmList).focus();
 
-    let focus = new Event("focus");
-    elm.dispatchEvent(focus);
-    elmList.forEach(item => item.dispatchEvent(focus));
+let focus = new Event("focus");
+elm.dispatchEvent(focus);
+elmList.forEach(item => item.dispatchEvent(focus));
 
 
 // =============================================================================
-    $(elm).focusin(func);
-    $(elmList).focusin(func);
+$(elm).focusin(func);
+$(elmList).focusin(func);
 
-    elm.addEventListener("focusin", func);
-    elmList.forEach(item => item.addEventListener("focusin", func));
+elm.addEventListener("focusin", func);
+elmList.forEach(item => item.addEventListener("focusin", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).focusin();
-    $(elmList).focusin();
+$(elm).focusin();
+$(elmList).focusin();
 
-    let focusin = new Event("focusin");
-    elm.dispatchEvent(focusin);
-    elmList.forEach(item => item.dispatchEvent(focusin));
+let focusin = new Event("focusin");
+elm.dispatchEvent(focusin);
+elmList.forEach(item => item.dispatchEvent(focusin));
 
 
 // =============================================================================
-    $(elm).focusout(func);
-    $(elmList).focusout(func);
+$(elm).focusout(func);
+$(elmList).focusout(func);
 
-    elm.addEventListener("focusout", func);
-    elmList.forEach(item => item.addEventListener("focusout", func));
+elm.addEventListener("focusout", func);
+elmList.forEach(item => item.addEventListener("focusout", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).focusout();
-    $(elmList).focusout();
+$(elm).focusout();
+$(elmList).focusout();
 
-    let focusout = new Event("focusout");
-    elm.dispatchEvent(focusout);
-    elmList.forEach(item => item.dispatchEvent(focusout));
+let focusout = new Event("focusout");
+elm.dispatchEvent(focusout);
+elmList.forEach(item => item.dispatchEvent(focusout));
 
 
 // =============================================================================
-    $(elm).get();
+$(elm).get();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).has();
+$(elm).has();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).height();
+$(elm).height();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).hide();
-    $(elmList).hide();
+$(elm).hide();
+$(elmList).hide();
 
-    elm.style.display = "none";
-    elmList.forEach(item => item.style.display = "none");
+elm.style.display = "none";
+elmList.forEach(item => item.style.display = "none");
 
 
 // =============================================================================
-    $(elm).hover(func);
-    $(elmList).hover(func);
+$(elm).hover(func);
+$(elmList).hover(func);
 
-    elm.addEventListener("hover", func);
-    elmList.forEach(item => item.addEventListener("hover", func));
+elm.addEventListener("hover", func);
+elmList.forEach(item => item.addEventListener("hover", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).hover();
-    $(elmList).hover();
+$(elm).hover();
+$(elmList).hover();
 
-    let hover = new Event("hover");
-    elm.dispatchEvent(hover);
-    elmList.forEach(item => item.dispatchEvent(hover));
+let hover = new Event("hover");
+elm.dispatchEvent(hover);
+elmList.forEach(item => item.dispatchEvent(hover));
 
 
 // =============================================================================
-    $(elm).html(markupString);
-    $(elmList).html(markupString);
+$(elm).html(markupString);
+$(elmList).html(markupString);
 
-    elm.innerHTML = markupString;
-    elmList.forEach(item => item.innerHTML = markupString);
+elm.innerHTML = markupString;
+elmList.forEach(item => item.innerHTML = markupString);
 
 
 // =============================================================================
-    $(elm).index();
+$(elm).index();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).innerHeight();
+$(elm).innerHeight();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).innerWidth();
+$(elm).innerWidth();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).insertAfter();
+$(elm).insertAfter();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).insertBefore();
+$(elm).insertBefore();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).is();
+$(elm).is();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).keydown(func);
-    $(elmList).keydown(func);
+$(elm).keydown(func);
+$(elmList).keydown(func);
 
-    elm.addEventListener("keydown", func);
-    elmList.forEach(item => item.addEventListener("keydown", func));
+elm.addEventListener("keydown", func);
+elmList.forEach(item => item.addEventListener("keydown", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).keydown();
-    $(elmList).keydown();
+$(elm).keydown();
+$(elmList).keydown();
 
-    let keydown = new Event("keydown");
-    elm.dispatchEvent(keydown);
-    elmList.forEach(item => item.dispatchEvent(keydown));
+let keydown = new Event("keydown");
+elm.dispatchEvent(keydown);
+elmList.forEach(item => item.dispatchEvent(keydown));
 
 
 // =============================================================================
-    $(elm).keypress(func);
-    $(elmList).keypress(func);
+$(elm).keypress(func);
+$(elmList).keypress(func);
 
-    elm.addEventListener("keypress", func);
-    elmList.forEach(item => item.addEventListener("keypress", func));
+elm.addEventListener("keypress", func);
+elmList.forEach(item => item.addEventListener("keypress", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).keypress();
-    $(elmList).keypress();
+$(elm).keypress();
+$(elmList).keypress();
 
-    let keypress = new Event("keypress");
-    elm.dispatchEvent(keypress);
-    elmList.forEach(item => item.dispatchEvent(keypress));
+let keypress = new Event("keypress");
+elm.dispatchEvent(keypress);
+elmList.forEach(item => item.dispatchEvent(keypress));
 
 
 // =============================================================================
-    $(elm).keyup(func);
-    $(elmList).keyup(func);
+$(elm).keyup(func);
+$(elmList).keyup(func);
 
-    elm.addEventListener("keyup", func);
-    elmList.forEach(item => item.addEventListener("keyup", func));
+elm.addEventListener("keyup", func);
+elmList.forEach(item => item.addEventListener("keyup", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).keyup();
-    $(elmList).keyup();
+$(elm).keyup();
+$(elmList).keyup();
 
-    let keyup = new Event("keyup");
-    elm.dispatchEvent(keyup);
-    elmList.forEach(item => item.dispatchEvent(keyup));
+let keyup = new Event("keyup");
+elm.dispatchEvent(keyup);
+elmList.forEach(item => item.dispatchEvent(keyup));
 
 
 // =============================================================================
-    $(elm).last();
+$(elm).last();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).live(eventName, func);
-    $(elmList).live(eventName, func);
+$(elm).live(eventName, func);
+$(elmList).live(eventName, func);
 
-    elm.addEventListener(eventName, func);
-    elmList.forEach(item => item.addEventListener(eventName, func));
+elm.addEventListener(eventName, func);
+elmList.forEach(item => item.addEventListener(eventName, func));
 
 
 // =============================================================================
-    $(elm).load();
+$(elm).load();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).load();
+$(elm).load();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).map();
+$(elm).map();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).mousedown(func);
-    $(elmList).mousedown(func);
+$(elm).mousedown(func);
+$(elmList).mousedown(func);
 
-    elm.addEventListener("mousedown", func);
-    elmList.forEach(item => item.addEventListener("mousedown", func));
+elm.addEventListener("mousedown", func);
+elmList.forEach(item => item.addEventListener("mousedown", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).mousedown();
-    $(elmList).mousedown();
+$(elm).mousedown();
+$(elmList).mousedown();
 
-    let mousedown = new Event("mousedown");
-    elm.dispatchEvent(mousedown);
-    elmList.forEach(item => item.dispatchEvent(mousedown));
+let mousedown = new Event("mousedown");
+elm.dispatchEvent(mousedown);
+elmList.forEach(item => item.dispatchEvent(mousedown));
 
 
 // =============================================================================
-    $(elm).mouseenter(func);
-    $(elmList).mouseenter(func);
+$(elm).mouseenter(func);
+$(elmList).mouseenter(func);
 
-    elm.addEventListener("mouseenter", func);
-    elmList.forEach(item => item.addEventListener("mouseenter", func));
+elm.addEventListener("mouseenter", func);
+elmList.forEach(item => item.addEventListener("mouseenter", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).mouseenter();
-    $(elmList).mouseenter();
+$(elm).mouseenter();
+$(elmList).mouseenter();
 
-    let mouseenter = new Event("mouseenter");
-    elm.dispatchEvent(mouseenter);
-    elmList.forEach(item => item.dispatchEvent(mouseenter));
+let mouseenter = new Event("mouseenter");
+elm.dispatchEvent(mouseenter);
+elmList.forEach(item => item.dispatchEvent(mouseenter));
 
 
 // =============================================================================
-    $(elm).mouseleave(func);
-    $(elmList).mouseleave(func);
+$(elm).mouseleave(func);
+$(elmList).mouseleave(func);
 
-    elm.addEventListener("mouseleave", func);
-    elmList.forEach(item => item.addEventListener("mouseleave", func));
+elm.addEventListener("mouseleave", func);
+elmList.forEach(item => item.addEventListener("mouseleave", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).mouseleave();
-    $(elmList).mouseleave();
+$(elm).mouseleave();
+$(elmList).mouseleave();
 
-    let mouseleave = new Event("mouseleave");
-    elm.dispatchEvent(mouseleave);
-    elmList.forEach(item => item.dispatchEvent(mouseleave));
+let mouseleave = new Event("mouseleave");
+elm.dispatchEvent(mouseleave);
+elmList.forEach(item => item.dispatchEvent(mouseleave));
 
 
 // =============================================================================
-    $(elm).mousemove(func);
-    $(elmList).mousemove(func);
+$(elm).mousemove(func);
+$(elmList).mousemove(func);
 
-    elm.addEventListener("mousemove", func);
-    elmList.forEach(item => item.addEventListener("mousemove", func));
+elm.addEventListener("mousemove", func);
+elmList.forEach(item => item.addEventListener("mousemove", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).mousemove();
-    $(elmList).mousemove();
+$(elm).mousemove();
+$(elmList).mousemove();
 
-    let mousemove = new Event("mousemove");
-    elm.dispatchEvent(mousemove);
-    elmList.forEach(item => item.dispatchEvent(mousemove));
+let mousemove = new Event("mousemove");
+elm.dispatchEvent(mousemove);
+elmList.forEach(item => item.dispatchEvent(mousemove));
 
 
 // =============================================================================
-    $(elm).mouseout(func);
-    $(elmList).mouseout(func);
+$(elm).mouseout(func);
+$(elmList).mouseout(func);
 
-    elm.addEventListener("mouseout", func);
-    elmList.forEach(item => item.addEventListener("mouseout", func));
+elm.addEventListener("mouseout", func);
+elmList.forEach(item => item.addEventListener("mouseout", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).mouseout();
-    $(elmList).mouseout();
+$(elm).mouseout();
+$(elmList).mouseout();
 
-    let mouseout = new Event("mouseout");
-    elm.dispatchEvent(mouseout);
-    elmList.forEach(item => item.dispatchEvent(mouseout));
+let mouseout = new Event("mouseout");
+elm.dispatchEvent(mouseout);
+elmList.forEach(item => item.dispatchEvent(mouseout));
 
 
 // =============================================================================
-    $(elm).mouseover(func);
-    $(elmList).mouseover(func);
+$(elm).mouseover(func);
+$(elmList).mouseover(func);
 
-    elm.addEventListener("mouseover", func);
-    elmList.forEach(item => item.addEventListener("mouseover", func));
+elm.addEventListener("mouseover", func);
+elmList.forEach(item => item.addEventListener("mouseover", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).mouseover();
-    $(elmList).mouseover();
+$(elm).mouseover();
+$(elmList).mouseover();
 
-    let mouseover = new Event("mouseover");
-    elm.dispatchEvent(mouseover);
-    elmList.forEach(item => item.dispatchEvent(mouseover));
+let mouseover = new Event("mouseover");
+elm.dispatchEvent(mouseover);
+elmList.forEach(item => item.dispatchEvent(mouseover));
 
 
 // =============================================================================
-    $(elm).mouseup(func);
-    $(elmList).mouseup(func);
+$(elm).mouseup(func);
+$(elmList).mouseup(func);
 
-    elm.addEventListener("mouseup", func);
-    elmList.forEach(item => item.addEventListener("mouseup", func));
+elm.addEventListener("mouseup", func);
+elmList.forEach(item => item.addEventListener("mouseup", func));
 
-    // ---------------------------------
+// ---------------------------------
 
-    $(elm).mouseup();
-    $(elmList).mouseup();
+$(elm).mouseup();
+$(elmList).mouseup();
 
-    let mouseup = new Event("mouseup");
-    elm.dispatchEvent(mouseup);
-    elmList.forEach(item => item.dispatchEvent(mouseup));
+let mouseup = new Event("mouseup");
+elm.dispatchEvent(mouseup);
+elmList.forEach(item => item.dispatchEvent(mouseup));
 
 
 // =============================================================================
-    $(elm).next();
+$(elm).next();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).nextAll();
+$(elm).nextAll();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).nextUntil();
+$(elm).nextUntil();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).not();
+$(elm).not();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).off();
+$(elm).off();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).offset();
+$(elm).offset();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).offsetParent();
+$(elm).offsetParent();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).on(eventName, func);
-    $(elmList).on(eventName, func);
+$(elm).on(eventName, func);
+$(elmList).on(eventName, func);
 
-    elm.addEventListener(eventName, func);
-    elmList.forEach(item => item.addEventListener(eventName, func));
+elm.addEventListener(eventName, func);
+elmList.forEach(item => item.addEventListener(eventName, func));
 
 
 // =============================================================================
-    $(elm).one(eventName, func);
-    $(elmList).one(eventName, func);
+$(elm).one(eventName, func);
+$(elmList).one(eventName, func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).outerHeight();
+$(elm).outerHeight();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).outerWidth();
+$(elm).outerWidth();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).parent();
+$(elm).parent();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).parents();
+$(elm).parents();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).parentsUntil();
+$(elm).parentsUntil();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).position();
+$(elm).position();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).prepend();
+$(elm).prepend();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).prependTo();
+$(elm).prependTo();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).prev();
+$(elm).prev();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).prevAll();
+$(elm).prevAll();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).prevUntil();
+$(elm).prevUntil();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).promise();
+$(elm).promise();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).prop();
+$(elm).prop();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).pushStack();
+$(elm).pushStack();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).queue();
+$(elm).queue();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).ready();
+$(elm).ready();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).remove();
+$(elm).remove();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).removeAttr();
+$(elm).removeAttr();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).removeClass();
+$(elm).removeClass();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).removeData();
+$(elm).removeData();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).removeProp();
+$(elm).removeProp();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).replaceAll();
+$(elm).replaceAll();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).replaceWith();
+$(elm).replaceWith();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).resize(func);
+$(elm).resize(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).scroll(func);
+$(elm).scroll(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).scrollLeft();
+$(elm).scrollLeft();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).scrollTop();
+$(elm).scrollTop();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).select(func);
+$(elm).select(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).serialize();
+$(elm).serialize();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).serializeArray();
+$(elm).serializeArray();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).show();
+$(elm).show();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).siblings();
+$(elm).siblings();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).size();
+$(elm).size();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).slice();
+$(elm).slice();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).slideDown();
+$(elm).slideDown();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).slideToggle();
+$(elm).slideToggle();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).slideUp();
+$(elm).slideUp();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).stop();
+$(elm).stop();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).submit(func);
+$(elm).submit(func);
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).text("any text");
-    $(elmList).text("any text");
+$(elm).text("any text");
+$(elmList).text("any text");
 
-    elm.textContent = "any text";
-    elmList.forEach(item => item.textContent = "any text");
+elm.textContent = "any text";
+elmList.forEach(item => item.textContent = "any text");
 
 
 // =============================================================================
-    $(elm).toArray();
+$(elm).toArray();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).toggle();
+$(elm).toggle();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).toggle();
+$(elm).toggle();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).toggleClass();
+$(elm).toggleClass();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).trigger();
+$(elm).trigger();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).triggerHandler();
+$(elm).triggerHandler();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).unbind();
+$(elm).unbind();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).undelegate();
+$(elm).undelegate();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).unload();
+$(elm).unload();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).unwrap();
+$(elm).unwrap();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).val();
+$(elm).val();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).width();
+$(elm).width();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).wrap();
+$(elm).wrap();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).wrapAll();
+$(elm).wrapAll();
 
-    // TODO
+// TODO
 
 
 // =============================================================================
-    $(elm).wrapInner();
+$(elm).wrapInner();
 
-    // TODO
+// TODO
 
 
 ```
