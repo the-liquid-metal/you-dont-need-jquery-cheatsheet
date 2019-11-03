@@ -80,7 +80,7 @@ single object, or a collection of particular object), jQuery always gives you a
 collection. This design, guaranties you to call any instance method of its member
 item safely. This situation is not not applicable with vanilla js, you have to
 know exactly what type of the output is, and have to make additional condition.
-Unless you are sure with what you are dealing with, every solution in this article
+Unless you are sure with what you are dealing with, most solution in this article
 are not safe. The exact solutions are like this:
 ```js
 $(selector || elm || elmList).attr(attribute);
@@ -111,6 +111,7 @@ if (elmList[0]) {
 }
 ```
 
+But if you see `elmList.forEach(/* ... */)`, this is always safety.
 
 <br/><br/>
 
