@@ -1783,9 +1783,16 @@ $jqList.width();
 
 // =============================================================================
 // SIGNATURE: .wrap(wrappingElement)
-$jqList.wrap();
+$jqList.wrap(markupString);
 
-// TODO
+otherElm = (new Range).createContextualFragment(markupString).firstElementChild
+elmList.forEach(item => item.parentNode.insertBefore(otherElm.cloneNode(true), item).appendChild(item));
+
+// ---------------------------------
+// SIGNATURE: .wrap(wrappingElement)
+$jqList.wrap(otherElm);
+
+elmList.forEach(item => item.parentNode.insertBefore(otherElm.cloneNode(true), item).appendChild(item));
 
 // ---------------------------------
 // SIGNATURE: .wrap(function)
