@@ -27,15 +27,15 @@
   ```
   it would be more elegance and natural if it written like this:
   ```js
-  $(selector || elm || elmList).attr(attribute);
+  $jqList.attr(attribute);
   ```
   You have to interpret it as `$(selector).attr(attribute);` or as
-  `$(elm).attr(attribute);` or as `$(elmList).attr(attribute);`
+  `$jqList.attr(attribute);` or as `$(elmList).attr(attribute);`
 
 * One unit of solution is defined as a consecutive number of lines and ended
   with blank line. The example of problem below has 3 solutions.
   ```js
-  $(selector || elm || elmList).attr(attribute);
+  $jqList.attr(attribute);
 
   document.querySelectorAll(selector)[0].getAttribute(attribute);
 
@@ -62,10 +62,10 @@
 **Real code reality:**
 
 We know that jQuery instance methods can act as setter and getter. In the solutions
-bellow, you will see many getter written like this one `$(selector || elm || elmList).attr(attribute);`.
+bellow, you will see many getter written like this one `$jqList.attr(attribute);`.
 But there is no such thing like that, right?!. The realistic is like this one
-`let pocket = $(selector || elm || elmList).attr(attribute);` or like this one
-`if ($(selector || elm || elmList).attr(attribute)) {/* ... */}`. The reason we
+`let pocket = $jqList.attr(attribute);` or like this one
+`if ($jqList.attr(attribute)) {/* ... */}`. The reason we
 write like that kind is to shorten the line, and eliminate all possibility which
 can bloat this article.
 
@@ -83,7 +83,7 @@ know exactly what type of the output is, and have to make additional condition.
 Unless you are sure with what you are dealing with, most solution in this article
 are not safe. The exact solutions are like this:
 ```js
-$(selector || elm || elmList).attr(attribute);
+$jqList.attr(attribute);
 
 // unsafety if you are not sure
 attr = document.querySelector(selector).getAttribute(attribute);
@@ -150,1038 +150,2141 @@ let func = function(){};
 
 
 // =============================================================================
-$(elm).add(elm);
+// SIGNATURE: .add(selector)
+$jqList.add(elm);
 
 [...elmList].push(elm);
 
+// ---------------------------------
+// SIGNATURE: .add(elements)
+$jqList.add(elm);
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .add(html)
+$jqList.add(elm);
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .add(selection)
+$jqList.add(elm);
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .add(selector, context)
+$jqList.add(elm);
+
+// TODO
+
 
 // =============================================================================
-$(elm).addBack();
+// SIGNATURE: .addBack([selector])
+$jqList.addBack();
 
 [...elmList].filter((item, idx, self) => idx >= self.indexOf(elm));
 
 
 // =============================================================================
-$(selector || elm || elmList).addClass("new-class");
+// SIGNATURE: .addClass(className)
+$jqList.addClass("new-class");
 
 elm.classList.add("new-class");
+
 elmList.forEach(item => item.classList.add("new-class"));
 
+// ---------------------------------
+// SIGNATURE: .addClass(function)
+$jqList.addClass();
+
+// TODO
+
 
 // =============================================================================
-$(selector || elm || elmList).after(markupString);
+// SIGNATURE: .after(content, [content])
+$jqList.after(markupString);
 
 elm.insertAdjacentHTML("afterend", markupString);
+
 elmList.forEach(item => item.insertAdjacentHTML("afterend", markupString));
 
+// ---------------------------------
+// SIGNATURE: .after(function)
+$jqList.after();
 
-// =============================================================================
-$(elm).ajaxComplete(func);
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .after(function-html)
+$jqList.after();
 
 // TODO
 
 
 // =============================================================================
-$(elm).ajaxError(func);
+// SIGNATURE: .ajaxComplete(handler)
+$jqList.ajaxComplete(func);
 
 // TODO
 
 
 // =============================================================================
-$(elm).ajaxSend(func);
+// SIGNATURE: .ajaxError(handler)
+$jqList.ajaxError(func);
 
 // TODO
 
 
 // =============================================================================
-$(elm).ajaxStart(func);
+// SIGNATURE: .ajaxSend(handler)
+$jqList.ajaxSend(func);
 
 // TODO
 
 
 // =============================================================================
-$(elm).ajaxStop(func);
+// SIGNATURE: .ajaxStart(handler)
+$jqList.ajaxStart(func);
 
 // TODO
 
 
 // =============================================================================
-$(elm).ajaxSuccess(func);
+// SIGNATURE: .ajaxStop(handler)
+$jqList.ajaxStop(func);
 
 // TODO
 
 
 // =============================================================================
-$(elm).andSelf();
+// SIGNATURE: .ajaxSuccess(handler)
+$jqList.ajaxSuccess(func);
 
 // TODO
 
 
 // =============================================================================
-$(elm).animate();
+// SIGNATURE: .andSelf()
+$jqList.andSelf();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).append(otherElm);
+// SIGNATURE: .animate(properties, [duration], [easing], [complete])
+$jqList.animate(cssObject, [duration], [easing], [complete]);
+
+elm.style.transition = `all ${duration} ${easing}`;
+Object.keys(cssObject).forEach(key => elm.style[key] = cssObject[key]);
+
+elmList.forEach(item => {
+	item.style.transition = `all ${duration} ${easing}`;
+	Object.keys(cssObject).forEach(key => item.style[key] = cssObject[key]);
+});
+
+// ---------------------------------
+// SIGNATURE: .animate(properties, options)
+$jqList.animate(cssObject, [duration], [easing], [complete]);
+
+
+// =============================================================================
+// SIGNATURE: .append(content, [content])
+$jqList.append(otherElm);
 
 elm.appendChild(otherElm);
+
 elm.append(otherElm || nonMarkupString);
+
+// ---------------------------------
+// SIGNATURE: .append(function)
+$jqList.append();
+
+// TODO
 
 
 // =============================================================================
-$(elm).appendTo(otherElm);
+// SIGNATURE: .appendTo(target)
+$jqList.appendTo(otherElm);
 
 otherElm.appendChild(elm);
 
 
 // =============================================================================
-$(selector || elm || elmList).attr("placeholder");
+// SIGNATURE: .attr(attributeName)
+$jqList.attr("placeholder");
 
 elm.getAttribute("placeholder");
+
 elmList[0].getAttribute("placeholder");
 
 // ---------------------------------
-
-$(selector || elm || elmList).attr("placeholder", "price");
+// SIGNATURE: .attr(attributeName, value)
+$jqList.attr("placeholder", "price");
 
 elm.setAttribute("placeholder", "price");
+
 elmList.forEach(item => item.setAttribute("placeholder"));
 
+// ---------------------------------
+// SIGNATURE: .attr(attributes)
+$jqList.attr();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .attr(attributeName, function)
+$jqList.attr();
+
+// TODO
+
 
 // =============================================================================
-$(selector || elm || elmList).before(markupString);
+// SIGNATURE: .before(content, [content])
+$jqList.before(markupString);
 
 elm.insertAdjacentHTML("beforebegin", markupString);
+
 elmList.forEach(item => item.insertAdjacentHTML("beforebegin", markupString));
 
+// ---------------------------------
+// SIGNATURE: .before(function)
+$jqList.before();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .before(function-html)
+$jqList.before();
+
+// TODO
+
 
 // =============================================================================
-$(selector || elm || elmList).bind(eventName, func);
+// SIGNATURE: .bind(eventType, [eventData], handler)
+$jqList.bind(eventName, func);
 
 elm.addEventListener(eventName, func);
+
 elmList.forEach(item => item.addEventListener(eventName, func));
+
+// ---------------------------------
+// SIGNATURE: .bind(eventType, [eventData], [preventBubble])
+$jqList.bind();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .bind(events)
+$jqList.bind();
+
+// TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).blur(func);
+// SIGNATURE: .blur(handler)
+$jqList.blur(func);
 
 elm.addEventListener("blur", func);
+
 elmList.forEach(item => item.addEventListener("blur", func));
 
 // ---------------------------------
+// SIGNATURE: .blur([eventData], handler)
+$jqList.blur();
 
-$(selector || elm || elmList).blur();
+// TODO
 
-let blur = new Event("blur");
-elm.dispatchEvent(blur);
-elmList.forEach(item => item.dispatchEvent(blur));
+// ---------------------------------
+// SIGNATURE: .blur()
+$jqList.blur();
+
+elm.dispatchEvent(new Event("blur"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("blur")));
 
 
 // =============================================================================
-$(selector || elm || elmList).change(func);
+// SIGNATURE: .change(handler)
+$jqList.change(func);
 
 elm.addEventListener("change", func);
+
 elmList.forEach(item => item.addEventListener("change", func));
 
 // ---------------------------------
+// SIGNATURE: .change([eventData], handler)
+$jqList.change();
 
-$(selector || elm || elmList).change();
+// TODO
 
-let change = new Event("change");
-elm.dispatchEvent(change);
-elmList.forEach(item => item.dispatchEvent(change));
+// ---------------------------------
+// SIGNATURE: .change()
+$jqList.change();
+
+elm.dispatchEvent(new Event("change"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("change")));
 
 
 // =============================================================================
-$(elm).children();
+// SIGNATURE: .children([selector])
+$jqList.children();
 
 elm.children;
 
 
 // =============================================================================
-$(elm).clearQueue();
+// SIGNATURE: .clearQueue([queueName])
+$jqList.clearQueue();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).click(func);
+// SIGNATURE: .click(handler)
+$jqList.click(func);
 
 elm.addEventListener("click", func);
+
 elmList.forEach(item => item.addEventListener("click", func));
 
 // ---------------------------------
+// SIGNATURE: .click([eventData], handler)
+$jqList.click();
 
-$(selector || elm || elmList).click(func);
+// TODO
 
-let click = new Event("click");
-elm.dispatchEvent(click);
-elmList.forEach(item => item.dispatchEvent(click));
+// ---------------------------------
+// SIGNATURE: .click()
+$jqList.click();
+
+elm.dispatchEvent(new Event("click");
+
+elmList.forEach(item => item.dispatchEvent(new Event("click"));
 
 
 // =============================================================================
-$(elm).clone();
+// SIGNATURE: .clone([withDataAndEvents])
+$jqList.clone();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .clone([withDataAndEvents], [deepWithDataAndEvents])
+$jqList.clone();
 
 // TODO
 
 
 // =============================================================================
-$(elm).closest();
+// SIGNATURE: .closest(selector)
+$jqList.closest();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .closest(selector, [context])
+$jqList.closest();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .closest(selection)
+$jqList.closest();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .closest(element)
+$jqList.closest();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .closest(selectors, [context])
+$jqList.closest();
 
 // TODO
 
 
 // =============================================================================
-$(elm).contents();
+// SIGNATURE: .contents()
+$jqList.contents();
 
 // TODO
 
 
 // =============================================================================
-$(elm).contextmenu();
+// SIGNATURE: .contextmenu(handler)
+$jqList.contextmenu();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .contextmenu([eventData], handler)
+$jqList.contextmenu();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .contextmenu()
+$jqList.contextmenu();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).css("border-width", "20px");
+// SIGNATURE: .css(propertyName)
+$jqList.css();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .css(propertyNames)
+$jqList.css();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .css(propertyName, value)
+$jqList.css("border-width", "20px");
 
 elm.style.borderWidth = "20px";
+
 elmList.forEach(item => item.style.borderWidth = "20px");
 
-
-// =============================================================================
-$(elm).data();
+// ---------------------------------
+// SIGNATURE: .css(propertyName, function)
+$jqList.css();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).dblclick(func);
+// SIGNATURE: .data(key, value)
+$jqList.data();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .data(obj)
+$jqList.data();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .data(key)
+$jqList.data();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .data()
+$jqList.data();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .dblclick(handler)
+$jqList.dblclick(func);
 
 elm.addEventListener("dblclick", func);
+
 elmList.forEach(item => item.addEventListener("dblclick", func));
 
 // ---------------------------------
+// SIGNATURE: .dblclick([eventData], handler)
+$jqList.dblclick();
 
-$(selector || elm || elmList).dblclick();
+// TODO
 
-let dblclick = new Event("dblclick");
-elm.dispatchEvent(dblclick);
-elmList.forEach(item => item.dispatchEvent(dblclick));
+// ---------------------------------
+// SIGNATURE: .dblclick()
+$jqList.dblclick();
+
+elm.dispatchEvent(new Event("dblclick"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("dblclick")));
 
 
 // =============================================================================
-$(elm).delay();
+// SIGNATURE: .delay(duration, [queueName])
+$jqList.delay();
 
 // TODO
 
 
 // =============================================================================
-$(elm).delegate();
+// SIGNATURE: .delegate(selector, eventType, handler)
+$jqList.delegate();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .delegate(selector, eventType, eventData, handler)
+$jqList.delegate();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .delegate(selector, events)
+$jqList.delegate();
 
 // TODO
 
 
 // =============================================================================
-$(elm).dequeue();
+// SIGNATURE: .dequeue([queueName])
+$jqList.dequeue();
 
 // TODO
 
 
 // =============================================================================
-$(elm).detach();
+// SIGNATURE: .detach([selector])
+$jqList.detach();
 
 // TODO
 
 
 // =============================================================================
-$(elm).die();
+// SIGNATURE: .die()
+$jqList.die();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .die(eventType, [handler])
+$jqList.die();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .die(events)
+$jqList.die();
 
 // TODO
 
 
 // =============================================================================
-$(elm).each();
+// SIGNATURE: .each(function)
+$jqList.each();
 
 // TODO
 
 
 // =============================================================================
-$(elm).empty();
+// SIGNATURE: .empty()
+$jqList.empty();
 
 // TODO
 
 
 // =============================================================================
-$(elm).end();
+// SIGNATURE: .end()
+$jqList.end();
 
 // TODO
 
 
 // =============================================================================
-$(elm).eq();
+// SIGNATURE: .eq(index)
+$jqList.eq();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .eq(indexFromEnd)
+$jqList.eq();
 
 // TODO
 
 
 // =============================================================================
-$(elm).error();
+// SIGNATURE: .error(handler)
+$jqList.error();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .error([eventData], handler)
+$jqList.error();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).fadeIn();
+// SIGNATURE: .fadeIn([duration], [complete])
+$jqList.fadeIn();
 
 elm.style.transition = `opacity ${number}ms`;
 elm.style.display = "block";
-setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, number);
+
+// ---------------------------------
+// SIGNATURE: .fadeIn(options)
+$jqList.fadeIn();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .fadeIn([duration], [easing], [complete])
+$jqList.fadeIn();
+
+// TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).fadeOut();
+// SIGNATURE: .fadeOut([duration], [complete])
+$jqList.fadeOut();
 
 elm.style.transition = `opacity ${number}ms`;
 elm.addEventListener("transitionend", () => {elm.style.display = "none"; elm.style.transition = ""}, {once: true});
 elm.style.opacity = "0";
 
+// ---------------------------------
+// SIGNATURE: .fadeOut(options)
+$jqList.fadeOut();
 
-// =============================================================================
-$(elm).fadeTo();
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .fadeOut([duration], [easing], [complete])
+$jqList.fadeOut();
 
 // TODO
 
 
 // =============================================================================
-$(elm).fadeToggle();
+// SIGNATURE: .fadeTo(duration, opacity, [complete])
+$jqList.fadeTo();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .fadeTo(duration, opacity, [easing], [complete])
+$jqList.fadeTo();
 
 // TODO
 
 
 // =============================================================================
-$(elm).filter();
+// SIGNATURE: .fadeToggle([duration], [easing], [complete])
+$jqList.fadeToggle();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .fadeToggle(options)
+$jqList.fadeToggle();
 
 // TODO
 
 
 // =============================================================================
-$(elm).find();
+// SIGNATURE: .filter(selector)
+$jqList.filter();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .filter(function)
+$jqList.filter();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .filter(elements)
+$jqList.filter();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .filter(selection)
+$jqList.filter();
 
 // TODO
 
 
 // =============================================================================
-$(elm).finish();
+// SIGNATURE: .find(selector)
+$jqList.find();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .find(element)
+$jqList.find();
 
 // TODO
 
 
 // =============================================================================
-$(elm).first();
+// SIGNATURE: .finish([queue])
+$jqList.finish();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).focus(func);
+// SIGNATURE: .first()
+$jqList.first();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .focus(handler)
+$jqList.focus(func);
 
 elm.addEventListener("focus", func);
+
 elmList.forEach(item => item.addEventListener("focus", func));
 
 // ---------------------------------
+// SIGNATURE: .focus([eventData], handler)
+$jqList.focus();
 
-$(selector || elm || elmList).focus();
+// TODO
 
-let focus = new Event("focus");
-elm.dispatchEvent(focus);
-elmList.forEach(item => item.dispatchEvent(focus));
+// ---------------------------------
+// SIGNATURE: .focus()
+$jqList.focus();
+
+elm.dispatchEvent(new Event("focus"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("focus")));
 
 
 // =============================================================================
-$(selector || elm || elmList).focusin(func);
+// SIGNATURE: .focusin(handler)
+$jqList.focusin(func);
 
 elm.addEventListener("focusin", func);
+
 elmList.forEach(item => item.addEventListener("focusin", func));
 
 // ---------------------------------
+// SIGNATURE: .focusin([eventData], handler)
+$jqList.focusin();
 
-$(selector || elm || elmList).focusin();
+// TODO
 
-let focusin = new Event("focusin");
-elm.dispatchEvent(focusin);
-elmList.forEach(item => item.dispatchEvent(focusin));
+// ---------------------------------
+// SIGNATURE: .focusin()
+$jqList.focusin();
+
+elm.dispatchEvent(new Event("focusin"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("focusin")));
 
 
 // =============================================================================
-$(selector || elm || elmList).focusout(func);
+// SIGNATURE: .focusout(handler)
+$jqList.focusout(func);
 
 elm.addEventListener("focusout", func);
+
 elmList.forEach(item => item.addEventListener("focusout", func));
 
 // ---------------------------------
-
-$(selector || elm || elmList).focusout();
-
-let focusout = new Event("focusout");
-elm.dispatchEvent(focusout);
-elmList.forEach(item => item.dispatchEvent(focusout));
-
-
-// =============================================================================
-$(elm).get();
+// SIGNATURE: .focusout([eventData], handler)
+$jqList.focusout();
 
 // TODO
-
-
-// =============================================================================
-$(elm).has();
-
-// TODO
-
-
-// =============================================================================
-
-// TODO
-
-
-// =============================================================================
-$(elm).height();
-
-// TODO
-
-
-// =============================================================================
-$(selector || elm || elmList).hide();
-
-elm.style.display = "none";
-elmList.forEach(item => item.style.display = "none");
-
-
-// =============================================================================
-$(selector || elm || elmList).hover(func);
-
-elm.addEventListener("hover", func);
-elmList.forEach(item => item.addEventListener("hover", func));
 
 // ---------------------------------
+// SIGNATURE: .focusout()
+$jqList.focusout();
 
-$(selector || elm || elmList).hover();
+elm.dispatchEvent(new Event("focusout"));
 
-let hover = new Event("hover");
-elm.dispatchEvent(hover);
-elmList.forEach(item => item.dispatchEvent(hover));
+elmList.forEach(item => item.dispatchEvent(new Event("focusout")));
 
 
 // =============================================================================
-$(selector || elm || elmList).html(markupString);
+// SIGNATURE: .get(index)
+$jqList.get();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .get()
+$jqList.get();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .has(selector)
+$jqList.has();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .has(contained)
+$jqList.has();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .hasClass(className)
+$jqList.hasClass();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .height()
+$jqList.height();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .height(value)
+$jqList.height();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .height(function)
+$jqList.height();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .hide()
+$jqList.hide();
+
+elm.style.display = "none";
+
+elmList.forEach(item => item.style.display = "none");
+
+// ---------------------------------
+// SIGNATURE: .hide([duration], [complete])
+$jqList.hide();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .hide(options)
+$jqList.hide();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .hide(duration, [easing], [complete])
+$jqList.hide();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .hover(handlerIn, handlerOut)
+$jqList.hover();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .hover(handlerInOut)
+$jqList.hover();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .html()
+$jqList.html();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .html(htmlString)
+$jqList.html(markupString);
 
 elm.innerHTML = markupString;
+
 elmList.forEach(item => item.innerHTML = markupString);
 
-
-// =============================================================================
-$(elm).index();
-
-// TODO
-
-
-// =============================================================================
-$(elm).innerHeight();
+// ---------------------------------
+// SIGNATURE: .html(function)
+$jqList.html();
 
 // TODO
 
 
 // =============================================================================
-$(elm).innerWidth();
+// SIGNATURE: .index()
+$jqList.index();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .index(selector)
+$jqList.index();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .index(element)
+$jqList.index();
 
 // TODO
 
 
 // =============================================================================
-$(elm).insertAfter();
+// SIGNATURE: .innerHeight()
+$jqList.innerHeight();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .innerHeight(value)
+$jqList.innerHeight();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .innerHeight(function)
+$jqList.innerHeight();
 
 // TODO
 
 
 // =============================================================================
-$(elm).insertBefore();
+// SIGNATURE: .innerWidth()
+$jqList.innerWidth();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .innerWidth(value)
+$jqList.innerWidth();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .innerWidth(function)
+$jqList.innerWidth();
 
 // TODO
 
 
 // =============================================================================
-$(elm).is();
+// SIGNATURE: .insertAfter(target)
+$jqList.insertAfter();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).keydown(func);
+// SIGNATURE: .insertBefore(target)
+$jqList.insertBefore();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .is(selector)
+$jqList.is();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .is(function)
+$jqList.is();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .is(selection)
+$jqList.is();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .is(elements)
+$jqList.is();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .keydown(handler)
+$jqList.keydown(func);
 
 elm.addEventListener("keydown", func);
+
 elmList.forEach(item => item.addEventListener("keydown", func));
 
 // ---------------------------------
+// SIGNATURE: .keydown([eventData], handler)
+$jqList.keydown();
 
-$(selector || elm || elmList).keydown();
+// TODO
 
-let keydown = new Event("keydown");
-elm.dispatchEvent(keydown);
-elmList.forEach(item => item.dispatchEvent(keydown));
+// ---------------------------------
+// SIGNATURE: .keydown()
+$jqList.keydown();
+
+elm.dispatchEvent(new Event("keydown"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("keydown")));
 
 
 // =============================================================================
-$(selector || elm || elmList).keypress(func);
+// SIGNATURE: .keypress(handler)
+$jqList.keypress(func);
 
 elm.addEventListener("keypress", func);
+
 elmList.forEach(item => item.addEventListener("keypress", func));
 
 // ---------------------------------
+// SIGNATURE: .keypress([eventData], handler)
+$jqList.keypress();
 
-$(selector || elm || elmList).keypress();
+// TODO
 
-let keypress = new Event("keypress");
-elm.dispatchEvent(keypress);
-elmList.forEach(item => item.dispatchEvent(keypress));
+// ---------------------------------
+// SIGNATURE: .keypress()
+$jqList.keypress();
+
+elm.dispatchEvent(new Event("keypress"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("keypress")));
 
 
 // =============================================================================
-$(selector || elm || elmList).keyup(func);
+// SIGNATURE: .keyup(handler)
+$jqList.keyup(func);
 
 elm.addEventListener("keyup", func);
+
 elmList.forEach(item => item.addEventListener("keyup", func));
 
 // ---------------------------------
+// SIGNATURE: .keyup([eventData], handler)
+$jqList.keyup();
 
-$(selector || elm || elmList).keyup();
+// TODO
 
-let keyup = new Event("keyup");
-elm.dispatchEvent(keyup);
-elmList.forEach(item => item.dispatchEvent(keyup));
+// ---------------------------------
+// SIGNATURE: .keyup()
+$jqList.keyup();
+
+elm.dispatchEvent(new Event("keyup"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("keyup")));
 
 
 // =============================================================================
-$(elm).last();
+// SIGNATURE: .last()
+$jqList.last();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).live(eventName, func);
+// SIGNATURE: .live(events, handler)
+$jqList.live(eventName, func);
 
 elm.addEventListener(eventName, func);
+
 elmList.forEach(item => item.addEventListener(eventName, func));
 
+// ---------------------------------
+// SIGNATURE: .live(events, [data], handler)
+$jqList.live();
 
-// =============================================================================
-$(elm).load();
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .live(events)
+$jqList.live();
 
 // TODO
 
 
 // =============================================================================
-$(elm).load();
+// SIGNATURE: .load(url, [data], [complete])
+$jqList.load();
 
 // TODO
 
 
 // =============================================================================
-$(elm).map();
+// SIGNATURE: .load(handler)
+$jqList.load();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .load([eventData], handler)
+$jqList.load();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).mousedown(func);
+// SIGNATURE: .map(callback)
+$jqList.map();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .mousedown(handler)
+$jqList.mousedown(func);
 
 elm.addEventListener("mousedown", func);
+
 elmList.forEach(item => item.addEventListener("mousedown", func));
 
 // ---------------------------------
+// SIGNATURE: .mousedown([eventData], handler)
+$jqList.mousedown();
 
-$(selector || elm || elmList).mousedown();
+// TODO
 
-let mousedown = new Event("mousedown");
-elm.dispatchEvent(mousedown);
-elmList.forEach(item => item.dispatchEvent(mousedown));
+// ---------------------------------
+// SIGNATURE: .mousedown()
+$jqList.mousedown();
+
+elm.dispatchEvent(new Event("mousedown"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("mousedown")));
 
 
 // =============================================================================
-$(selector || elm || elmList).mouseenter(func);
+// SIGNATURE: .mouseenter(handler)
+$jqList.mouseenter(func);
 
 elm.addEventListener("mouseenter", func);
+
 elmList.forEach(item => item.addEventListener("mouseenter", func));
 
 // ---------------------------------
+// SIGNATURE: .mouseenter([eventData], handler)
+$jqList.mouseenter();
 
-$(selector || elm || elmList).mouseenter();
+// TODO
 
-let mouseenter = new Event("mouseenter");
-elm.dispatchEvent(mouseenter);
-elmList.forEach(item => item.dispatchEvent(mouseenter));
+// ---------------------------------
+// SIGNATURE: .mouseenter()
+$jqList.mouseenter();
+
+elm.dispatchEvent(new Event("mouseenter"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("mouseenter")));
 
 
 // =============================================================================
-$(selector || elm || elmList).mouseleave(func);
+// SIGNATURE: .mouseleave(handler)
+$jqList.mouseleave(func);
 
 elm.addEventListener("mouseleave", func);
+
 elmList.forEach(item => item.addEventListener("mouseleave", func));
 
 // ---------------------------------
+// SIGNATURE: .mouseleave([eventData], handler)
+$jqList.mouseleave();
 
-$(selector || elm || elmList).mouseleave();
+// TODO
 
-let mouseleave = new Event("mouseleave");
-elm.dispatchEvent(mouseleave);
-elmList.forEach(item => item.dispatchEvent(mouseleave));
+// ---------------------------------
+// SIGNATURE: .mouseleave()
+$jqList.mouseleave();
+
+elm.dispatchEvent(new Event("mouseleave"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("mouseleave")));
 
 
 // =============================================================================
-$(selector || elm || elmList).mousemove(func);
+// SIGNATURE: .mousemove(handler)
+$jqList.mousemove(func);
 
 elm.addEventListener("mousemove", func);
+
 elmList.forEach(item => item.addEventListener("mousemove", func));
 
 // ---------------------------------
+// SIGNATURE: .mousemove([eventData], handler)
+$jqList.mousemove();
 
-$(selector || elm || elmList).mousemove();
+// TODO
 
-let mousemove = new Event("mousemove");
-elm.dispatchEvent(mousemove);
-elmList.forEach(item => item.dispatchEvent(mousemove));
+// ---------------------------------
+// SIGNATURE: .mousemove()
+$jqList.mousemove();
+
+elm.dispatchEvent(new Event("mousemove"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("mousemove")));
 
 
 // =============================================================================
-$(selector || elm || elmList).mouseout(func);
+// SIGNATURE: .mouseout(handler)
+$jqList.mouseout(func);
 
 elm.addEventListener("mouseout", func);
+
 elmList.forEach(item => item.addEventListener("mouseout", func));
 
 // ---------------------------------
+// SIGNATURE: .mouseout([eventData], handler)
+$jqList.mouseout();
 
-$(selector || elm || elmList).mouseout();
+// TODO
 
-let mouseout = new Event("mouseout");
-elm.dispatchEvent(mouseout);
-elmList.forEach(item => item.dispatchEvent(mouseout));
+// ---------------------------------
+// SIGNATURE: .mouseout()
+$jqList.mouseout();
+
+elm.dispatchEvent(new Event("mouseout"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("mouseout")));
 
 
 // =============================================================================
-$(selector || elm || elmList).mouseover(func);
+// SIGNATURE: .mouseover(handler)
+$jqList.mouseover(func);
 
 elm.addEventListener("mouseover", func);
+
 elmList.forEach(item => item.addEventListener("mouseover", func));
 
 // ---------------------------------
+// SIGNATURE: .mouseover([eventData], handler)
+$jqList.mouseover();
 
-$(selector || elm || elmList).mouseover();
+// TODO
 
-let mouseover = new Event("mouseover");
-elm.dispatchEvent(mouseover);
-elmList.forEach(item => item.dispatchEvent(mouseover));
+// ---------------------------------
+// SIGNATURE: .mouseover()
+$jqList.mouseover();
+
+elm.dispatchEvent(new Event("mouseover"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("mouseover")));
 
 
 // =============================================================================
-$(selector || elm || elmList).mouseup(func);
+// SIGNATURE: .mouseup(handler)
+$jqList.mouseup(func);
 
 elm.addEventListener("mouseup", func);
+
 elmList.forEach(item => item.addEventListener("mouseup", func));
 
 // ---------------------------------
+// SIGNATURE: .mouseup([eventData], handler)
+$jqList.mouseup();
 
-$(selector || elm || elmList).mouseup();
+// TODO
 
-let mouseup = new Event("mouseup");
-elm.dispatchEvent(mouseup);
-elmList.forEach(item => item.dispatchEvent(mouseup));
+// ---------------------------------
+// SIGNATURE: .mouseup()
+$jqList.mouseup();
+
+elm.dispatchEvent(new Event("mouseup"));
+
+elmList.forEach(item => item.dispatchEvent(new Event("mouseup")));
 
 
 // =============================================================================
-$(elm).next();
+// SIGNATURE: .next([selector])
+$jqList.next();
 
 // TODO
 
 
 // =============================================================================
-$(elm).nextAll();
+// SIGNATURE: .nextAll([selector])
+$jqList.nextAll();
 
 // TODO
 
 
 // =============================================================================
-$(elm).nextUntil();
+// SIGNATURE: .nextUntil([selector], [filter])
+$jqList.nextUntil();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .nextUntil([element], [filter])
+$jqList.nextUntil();
 
 // TODO
 
 
 // =============================================================================
-$(elm).not();
+// SIGNATURE: .not(selector)
+$jqList.not();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .not(function)
+$jqList.not();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .not(selection)
+$jqList.not();
 
 // TODO
 
 
 // =============================================================================
-$(elm).off();
+// SIGNATURE: .off(events, [selector], [handler])
+$jqList.off();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .off(events, [selector])
+$jqList.off();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .off(event)
+$jqList.off();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .off()
+$jqList.off();
 
 // TODO
 
 
 // =============================================================================
-$(elm).offset();
+// SIGNATURE: .offset()
+$jqList.offset();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .offset(coordinates)
+$jqList.offset();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .offset(function)
+$jqList.offset();
 
 // TODO
 
 
 // =============================================================================
-$(elm).offsetParent();
+// SIGNATURE: .offsetParent()
+$jqList.offsetParent();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).on(eventName, func);
+// SIGNATURE: .on(events, [selector], [data], handler)
+$jqList.on(eventName, func);
 
 elm.addEventListener(eventName, func);
 
 elmList.forEach(item => item.addEventListener(eventName, func));
 
-
-// =============================================================================
-$(selector || elm || elmList).one(eventName, func);
-
-// TODO
-
-
-// =============================================================================
-$(elm).outerHeight();
+// ---------------------------------
+// SIGNATURE: .on(events, [selector], [data])
+$jqList.on();
 
 // TODO
 
 
 // =============================================================================
-$(elm).outerWidth();
+// SIGNATURE: .one(events, [data], handler)
+$jqList.one(eventName, func);
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .one(events, [selector], [data], handler)
+$jqList.one(eventName, func);
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .one(events, [selector], [data])
+$jqList.one(eventName, func);
 
 // TODO
 
 
 // =============================================================================
-$(elm).parent();
+// SIGNATURE: .outerHeight([includeMargin])
+$jqList.outerHeight();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .outerHeight(value [includeMargin])
+$jqList.outerHeight();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .outerHeight(function)
+$jqList.outerHeight();
 
 // TODO
 
 
 // =============================================================================
-$(elm).parents();
+// SIGNATURE: .outerWidth([includeMargin])
+$jqList.outerWidth();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .outerWidth(value, [includeMargin])
+$jqList.outerWidth();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .outerWidth(function)
+$jqList.outerWidth();
 
 // TODO
 
 
 // =============================================================================
-$(elm).parentsUntil();
+// SIGNATURE: .parent([selector])
+$jqList.parent();
 
 // TODO
 
 
 // =============================================================================
-$(elm).position();
+// SIGNATURE: .parents([selector])
+$jqList.parents();
 
 // TODO
 
 
 // =============================================================================
-$(elm).prepend();
+// SIGNATURE: .parentsUntil([selector], [filter])
+$jqList.parentsUntil();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .parentsUntil([element], [filter])
+$jqList.parentsUntil();
 
 // TODO
 
 
 // =============================================================================
-$(elm).prependTo();
+// SIGNATURE: .position()
+$jqList.position();
 
 // TODO
 
 
 // =============================================================================
-$(elm).prev();
+// SIGNATURE: .prepend(content, [content])
+$jqList.prepend();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .prepend(function)
+$jqList.prepend();
 
 // TODO
 
 
 // =============================================================================
-$(elm).prevAll();
+// SIGNATURE: .prependTo(target)
+$jqList.prependTo();
 
 // TODO
 
 
 // =============================================================================
-$(elm).prevUntil();
+// SIGNATURE: .prev([selector])
+$jqList.prev();
 
 // TODO
 
 
 // =============================================================================
-$(elm).promise();
+// SIGNATURE: .prevAll([selector])
+$jqList.prevAll();
 
 // TODO
 
 
 // =============================================================================
-$(elm).prop();
+// SIGNATURE: .prevUntil([selector], [filter])
+$jqList.prevUntil();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .prevUntil([element], [filter])
+$jqList.prevUntil();
 
 // TODO
 
 
 // =============================================================================
-$(elm).pushStack();
+// SIGNATURE: .promise([type], [target])
+$jqList.promise();
 
 // TODO
 
 
 // =============================================================================
-$(elm).queue();
+// SIGNATURE: .prop(propertyName)
+$jqList.prop();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .prop(propertyName, value)
+$jqList.prop();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .prop(properties)
+$jqList.prop();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .prop(propertyName, function)
+$jqList.prop();
 
 // TODO
 
 
 // =============================================================================
-$(elm).ready();
+// SIGNATURE: .pushStack(elements)
+$jqList.pushStack();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .pushStack(elements, name, arguments)
+$jqList.pushStack();
 
 // TODO
 
 
 // =============================================================================
-$(elm).remove();
+// SIGNATURE: .queue([queueName])
+$jqList.queue();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .queue([queueName], newQueue)
+$jqList.queue();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .queue([queueName], callback)
+$jqList.queue();
 
 // TODO
 
 
 // =============================================================================
-$(elm).removeAttr();
+// SIGNATURE: .ready(handler)
+$jqList.ready();
 
 // TODO
 
 
 // =============================================================================
-$(elm).removeClass();
+// SIGNATURE: .remove([selector])
+$jqList.remove();
 
 // TODO
 
 
 // =============================================================================
-$(elm).removeData();
+// SIGNATURE: .removeAttr(attributeName)
+$jqList.removeAttr();
 
 // TODO
 
 
 // =============================================================================
-$(elm).removeProp();
+// SIGNATURE: .removeClass([className])
+$jqList.removeClass();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .removeClass(function)
+$jqList.removeClass();
 
 // TODO
 
 
 // =============================================================================
-$(elm).replaceAll();
+// SIGNATURE: .removeData([name])
+$jqList.removeData();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .removeData([list])
+$jqList.removeData();
 
 // TODO
 
 
 // =============================================================================
-$(elm).replaceWith();
+// .removeProp(propertyName)
+$jqList.removeProp();
 
 // TODO
 
 
 // =============================================================================
-$(elm).resize(func);
+// SIGNATURE: .replaceAll(target)
+$jqList.replaceAll();
 
 // TODO
 
 
 // =============================================================================
-$(elm).scroll(func);
+// SIGNATURE: .replaceWith(newContent)
+$jqList.replaceWith();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .replaceWith(function)
+$jqList.replaceWith();
 
 // TODO
 
 
 // =============================================================================
-$(elm).scrollLeft();
+// SIGNATURE: .resize(handler)
+$jqList.resize();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .resize([eventData], handler)
+$jqList.resize();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .resize()
+$jqList.resize();
 
 // TODO
 
 
 // =============================================================================
-$(elm).scrollTop();
+// SIGNATURE: .scroll(handler)
+$jqList.scroll();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .scroll([eventData], handler)
+$jqList.scroll();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .scroll()
+$jqList.scroll();
 
 // TODO
 
 
 // =============================================================================
-$(elm).select(func);
+// SIGNATURE: .scrollLeft()
+$jqList.scrollLeft();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .scrollLeft(value)
+$jqList.scrollLeft();
 
 // TODO
 
 
 // =============================================================================
-$(elm).serialize();
+// SIGNATURE: .scrollTop()
+$jqList.scrollTop();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .scrollTop(value)
+$jqList.scrollTop();
 
 // TODO
 
 
 // =============================================================================
-$(elm).serializeArray();
+// SIGNATURE: .select(handler)
+$jqList.select();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .select([eventData], handler)
+$jqList.select();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .select()
+$jqList.select();
 
 // TODO
 
 
 // =============================================================================
-$(elm).show();
+// SIGNATURE: .serialize()
+$jqList.serialize();
 
 // TODO
 
 
 // =============================================================================
-$(elm).siblings();
+// SIGNATURE: .serializeArray()
+$jqList.serializeArray();
 
 // TODO
 
 
 // =============================================================================
-$(elm).size();
+// SIGNATURE: .show()
+$jqList.show();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .show([duration], [complete])
+$jqList.show();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .show(options)
+$jqList.show();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .show(duration, [easing], [complete])
+$jqList.show();
 
 // TODO
 
 
 // =============================================================================
-$(elm).slice();
+// SIGNATURE: .siblings([selector])
+$jqList.siblings();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).slideDown();
+// SIGNATURE: .size()
+$jqList.size();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).slideToggle();
+// SIGNATURE: .slice(start, [end])
+$jqList.slice();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).slideUp();
+// SIGNATURE: .slideDown([duration], [complete])
+$jqList.slideDown();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .slideDown(options)
+$jqList.slideDown();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .slideDown([duration], [easing], [complete])
+$jqList.slideDown();
 
 // TODO
 
 
 // =============================================================================
-$(elm).stop();
+// SIGNATURE: .slideToggle([duration], [complete])
+$jqList.slideToggle();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .slideToggle(options)
+$jqList.slideToggle();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .slideToggle([duration], [easing], [complete])
+$jqList.slideToggle();
 
 // TODO
 
 
 // =============================================================================
-$(elm).submit(func);
+// SIGNATURE: .slideUp([duration], [complete])
+$jqList.slideUp();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .slideUp(options)
+$jqList.slideUp();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .slideUp([duration], [easing], [complete])
+$jqList.slideUp();
 
 // TODO
 
 
 // =============================================================================
-$(selector || elm || elmList).text("any text");
+// SIGNATURE: .stop([clearQueue], [jumpToEnd])
+$jqList.stop();
 
-elm.textContent = "any text";
-elmList.forEach(item => item.textContent = "any text");
+// TODO
 
-
-// =============================================================================
-$(elm).toArray();
+// ---------------------------------
+// SIGNATURE: .stop([queue], [clearQueue], [jumpToEnd])
+$jqList.stop();
 
 // TODO
 
 
 // =============================================================================
-$(elm).toggle();
+// SIGNATURE: .submit(handler)
+$jqList.submit();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .submit([eventData], handler)
+$jqList.submit();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .submit()
+$jqList.submit();
 
 // TODO
 
 
 // =============================================================================
-$(elm).toggle();
+// SIGNATURE: .text()
+$jqList.text();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .text(text)
+$jqList.text(nonMarkupString);
+
+elm.textContent = nonMarkupString;
+
+elmList.forEach(item => item.textContent = nonMarkupString);
+
+// ---------------------------------
+// SIGNATURE: .text(function)
+$jqList.text();
 
 // TODO
 
 
 // =============================================================================
-$(elm).toggleClass();
+// SIGNATURE: .toArray()
+$jqList.toArray();
 
 // TODO
 
 
 // =============================================================================
-$(elm).trigger();
+// SIGNATURE: .toggle([duration], [complete])
+$jqList.toggle();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .toggle(options)
+$jqList.toggle();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .toggle(duration, [easing], [complete])
+$jqList.toggle();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .toggle(display)
+$jqList.toggle();
 
 // TODO
 
 
 // =============================================================================
-$(elm).triggerHandler();
+// SIGNATURE: .toggle( handler, handler, [handler])
+$jqList.toggle();
 
 // TODO
 
 
 // =============================================================================
-$(elm).unbind();
+// SIGNATURE: .toggleClass(className)
+$jqList.toggleClass();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .toggleClass(className, state)
+$jqList.toggleClass();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .toggleClass(function [state])
+$jqList.toggleClass();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .toggleClass([state])
+$jqList.toggleClass();
 
 // TODO
 
 
 // =============================================================================
-$(elm).undelegate();
+// SIGNATURE: .trigger(eventType, [extraParameters])
+$jqList.trigger();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .trigger(event, [extraParameters])
+$jqList.trigger();
 
 // TODO
 
 
 // =============================================================================
-$(elm).unload();
+// SIGNATURE: .triggerHandler(eventType, [extraParameters])
+$jqList.triggerHandler();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .triggerHandler(event, [extraParameters])
+$jqList.triggerHandler();
 
 // TODO
 
 
 // =============================================================================
-$(elm).unwrap();
+// SIGNATURE: .unbind(eventType, [handler])
+$jqList.unbind();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .unbind(eventType, false)
+$jqList.unbind();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .unbind(event)
+$jqList.unbind();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .unbind()
+$jqList.unbind();
 
 // TODO
 
 
 // =============================================================================
-$(elm).val();
+// SIGNATURE: .undelegate()
+$jqList.undelegate();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .undelegate(selector, eventType)
+$jqList.undelegate();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .undelegate(selector, eventType, handler)
+$jqList.undelegate();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .undelegate(selector, events)
+$jqList.undelegate();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .undelegate(namespace)
+$jqList.undelegate();
 
 // TODO
 
 
 // =============================================================================
-$(elm).width();
+// SIGNATURE: .unload(handler)
+$jqList.unload();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .unload([eventData], handler)
+$jqList.unload();
 
 // TODO
 
 
 // =============================================================================
-$(elm).wrap();
+// SIGNATURE: .unwrap()
+$jqList.unwrap();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .unwrap([selector])
+$jqList.unwrap();
 
 // TODO
 
 
 // =============================================================================
-$(elm).wrapAll();
+// SIGNATURE: .val()
+$jqList.val();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .val(value)
+$jqList.val();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .val(function)
+$jqList.val();
 
 // TODO
 
 
 // =============================================================================
-$(elm).wrapInner();
+// SIGNATURE: .width()
+$jqList.width();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .width(value)
+$jqList.width();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .width(function)
+$jqList.width();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .wrap(wrappingElement)
+$jqList.wrap();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .wrap(function)
+$jqList.wrap();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .wrapAll(wrappingElement)
+$jqList.wrapAll();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .wrapAll(function)
+$jqList.wrapAll();
+
+// TODO
+
+
+// =============================================================================
+// SIGNATURE: .wrapInner(wrappingElement)
+$jqList.wrapInner();
+
+// TODO
+
+// ---------------------------------
+// SIGNATURE: .wrapInner(function)
+$jqList.wrapInner();
 
 // TODO
 
