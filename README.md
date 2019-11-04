@@ -1766,13 +1766,18 @@ $jqList.val();
 // SIGNATURE: .width()
 $jqList.width();
 
-// TODO
+parseFloat(getComputedStyle(elm).width)
+
+parseFloat(getComputedStyle(elmList[0]).width)
+
 
 // ---------------------------------
 // SIGNATURE: .width(value)
-$jqList.width();
+$jqList.width(number);
 
-// TODO
+elm.style.height = `${number}px`;
+
+elmList.forEach(item => item.style.height = `${number}px`);
 
 // ---------------------------------
 // SIGNATURE: .width(function)
