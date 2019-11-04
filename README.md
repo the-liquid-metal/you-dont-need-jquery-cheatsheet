@@ -1658,9 +1658,19 @@ $jqList.toggleClass();
 
 // =============================================================================
 // SIGNATURE: .trigger(eventType, [extraParameters])
-$jqList.trigger();
+$jqList.trigger(eventType);
 
-// TODO
+elm.dispatchEvent(new Event(eventType));
+
+elmList.forEach(item => item.dispatchEvent(new Event(eventType)));
+
+// ---------------------------------
+// SIGNATURE: .trigger(eventType, [extraParameters])
+$jqList.trigger(eventType, {key1: 'data1', key2: 'data2'});
+
+elm.dispatchEvent(new CustomEvent(eventType), {detail: {key1: 'data1', key2: 'data2'});
+
+elmList.forEach(item => item.dispatchEvent(new CustomEvent(eventType), {detail: {key1: 'data1', key2: 'data2'}));
 
 // ---------------------------------
 // SIGNATURE: .trigger(event, [extraParameters])
