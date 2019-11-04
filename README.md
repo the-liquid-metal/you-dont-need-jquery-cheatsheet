@@ -360,8 +360,8 @@ elm.style.transition = `all ${duration} ${easing}`;
 Object.keys(cssObject).forEach(key => elm.style[key] = cssObject[key]);
 
 elmList.forEach(item => {
-	item.style.transition = `all ${duration} ${easing}`;
-	Object.keys(cssObject).forEach(key => item.style[key] = cssObject[key]);
+    item.style.transition = `all ${duration} ${easing}`;
+    Object.keys(cssObject).forEach(key => item.style[key] = cssObject[key]);
 });
 
 // ---------------------------------
@@ -1481,7 +1481,15 @@ $jqList.slice();
 // SIGNATURE: .slideDown([duration], [complete])
 $jqList.slideDown();
 
-// TODO
+elm.style.transition = `height 1000ms`;
+elm.style.display = "block";
+setTimeout(() => {elm.style.height = "200px"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+
+elmList.forEach(item => {
+    elm.style.transition = `height 1000ms`;
+    elm.style.display = "block";
+    setTimeout(() => {elm.style.height = "200px"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+});
 
 // ---------------------------------
 // SIGNATURE: .slideDown(options)
@@ -1519,7 +1527,15 @@ $jqList.slideToggle();
 // SIGNATURE: .slideUp([duration], [complete])
 $jqList.slideUp();
 
-// TODO
+elm.style.transition = `height 1000ms`;
+elm.style.height = "0px";
+setTimeout(() => {elm.style.display = "none"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+
+elmList.forEach(item => {
+    elm.style.transition = `height 1000ms`;
+    elm.style.height = "0px";
+    setTimeout(() => {elm.style.display = "none"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+});
 
 // ---------------------------------
 // SIGNATURE: .slideUp(options)
