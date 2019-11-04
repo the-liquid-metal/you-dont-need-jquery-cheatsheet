@@ -1734,7 +1734,10 @@ $jqList.undelegate();
 // SIGNATURE: .unwrap()
 $jqList.unwrap();
 
-// TODO
+elmList.forEach(item => {
+    const parent = item.parentNode;
+    (parent != document.body) && parent.parentNode.insertBefore(item, parent).parentNode.removeChild(parent);
+});
 
 // ---------------------------------
 // SIGNATURE: .unwrap([selector])
