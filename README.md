@@ -179,6 +179,24 @@ let func = function(){};
 
 
 // =============================================================================
+// SIMILAR METHOD: #error(), #load((), .unload(()
+
+    // ---------------------------------
+    // SIGNATURE: .error(handler)
+    $jqList.error();
+
+    elm.addEventListener("error", func);
+
+    elmList.forEach(item => item.addEventListener("error", func));
+
+    // ---------------------------------
+    // SIGNATURE: .error([eventData], handler)
+    $jqList.error();
+
+    // TODO
+
+
+// =============================================================================
 // SIMILAR METHOD: #hide(), #show()
 //
 // #hide() : "none"
@@ -655,19 +673,6 @@ $jqList.eq();
 
 
 // =============================================================================
-// SIGNATURE: .error(handler)
-$jqList.error();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .error([eventData], handler)
-$jqList.error();
-
-// TODO
-
-
-// =============================================================================
 // SIGNATURE: .fadeIn([duration], [complete])
 $jqList.fadeIn();
 
@@ -999,19 +1004,6 @@ $jqList.live();
 
 // =============================================================================
 // SIGNATURE: .load(url, [data], [complete])
-$jqList.load();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .load(handler)
-$jqList.load();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .load([eventData], handler)
 $jqList.load();
 
 // TODO
@@ -1706,19 +1698,6 @@ $jqList.undelegate();
 // ---------------------------------
 // SIGNATURE: .undelegate(namespace)
 $jqList.undelegate();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .unload(handler)
-$jqList.unload();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .unload([eventData], handler)
-$jqList.unload();
 
 // TODO
 
