@@ -627,9 +627,11 @@ $jqList.die();
 
 // ---------------------------------
 // SIGNATURE: .die(eventType, [handler])
-$jqList.die();
+$jqList.die(eventName, func);
 
-// TODO
+elm.removeEventListener(eventName, func);
+
+elmList.forEach(item => item.removeEventListener(eventName, func));
 
 // ---------------------------------
 // SIGNATURE: .die(events)
@@ -1076,9 +1078,11 @@ $jqList.not();
 
 // =============================================================================
 // SIGNATURE: .off(events, [selector], [handler])
-$jqList.off();
+$jqList.off(eventName, func);
 
-// TODO
+elm.removeEventListener(eventName, func);
+
+elmList.forEach(item => item.removeEventListener(eventName, func));
 
 // ---------------------------------
 // SIGNATURE: .off(events, [selector])
@@ -1676,9 +1680,11 @@ $jqList.triggerHandler();
 
 // =============================================================================
 // SIGNATURE: .unbind(eventType, [handler])
-$jqList.unbind();
+$jqList.unbind(eventName, func);
 
-// TODO
+elm.removeEventListener(eventName, func);
+
+elmList.forEach(item => item.removeEventListener(eventName, func));
 
 // ---------------------------------
 // SIGNATURE: .unbind(eventType, false)
