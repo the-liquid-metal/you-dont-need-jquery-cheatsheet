@@ -1575,7 +1575,9 @@ $jqList.stop();
 // SIGNATURE: .text()
 $jqList.text();
 
-// TODO
+el.textContent;
+
+elmList[0].textContent;
 
 // ---------------------------------
 // SIGNATURE: .text(text)
@@ -1596,7 +1598,7 @@ $jqList.text();
 // SIGNATURE: .toArray()
 $jqList.toArray();
 
-// TODO
+[...elmList]
 
 
 // =============================================================================
