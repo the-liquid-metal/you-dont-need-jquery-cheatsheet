@@ -1633,18 +1633,22 @@ $jqList.toggle();
 
 // =============================================================================
 // SIGNATURE: .toggleClass(className)
-$jqList.toggleClass();
+$jqList.toggleClass(className);
 
-// TODO
+elm.classList.toggle(className);
+
+elmList.forEach(item => item.classList.toggle(className));
 
 // ---------------------------------
 // SIGNATURE: .toggleClass(className, state)
 $jqList.toggleClass();
 
-// TODO
+state ? elm.classList.add(className) : elm.classList.remove(className);
+
+elmList.forEach(item => state ? item.classList.add(className) : item.classList.remove(className));
 
 // ---------------------------------
-// SIGNATURE: .toggleClass(function [state])
+// SIGNATURE: .toggleClass(function, [state])
 $jqList.toggleClass();
 
 // TODO
