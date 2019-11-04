@@ -1361,14 +1361,26 @@ $jqList.ready();
 // SIGNATURE: .remove([selector])
 $jqList.remove();
 
-// TODO
+elm.parentNode.removeChild(elm);
+
+elmList.forEach(item => item.parentNode.removeChild(item));
+
+// ---------------------------------
+// SIGNATURE: .remove([selector])
+$jqList.remove(selector);
+
+elm.match(selector) && elm.parentNode.removeChild(elm);
+
+elmList.forEach(item => item.match(selector) && item.parentNode.removeChild(item));
 
 
 // =============================================================================
 // SIGNATURE: .removeAttr(attributeName)
-$jqList.removeAttr();
+$jqList.removeAttr(attrName);
 
-// TODO
+elm.removeAttribute(attrName);
+
+elmList.forEach(item => item.removeAttribute(attrName));
 
 
 // =============================================================================
