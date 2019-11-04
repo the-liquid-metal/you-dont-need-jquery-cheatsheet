@@ -179,6 +179,39 @@ let func = function(){};
 
 
 // =============================================================================
+// SIMILAR METHOD: #hide(), #show()
+//
+// #hide() : "none"
+// #show() : "" | "inline" | "inline-block" | "inline-table" | "block"
+
+    // ---------------------------------
+    // SIGNATURE: .hide()
+    $jqList.hide();
+
+    elm.style.display = "none";
+
+    elmList.forEach(item => item.style.display = "none");
+
+    // ---------------------------------
+    // SIGNATURE: .hide([duration], [complete])
+    $jqList.hide();
+
+    // TODO
+
+    // ---------------------------------
+    // SIGNATURE: .hide(options)
+    $jqList.hide();
+
+    // TODO
+
+    // ---------------------------------
+    // SIGNATURE: .hide(duration, [easing], [complete])
+    $jqList.hide();
+
+    // TODO
+
+
+// =============================================================================
 // SIGNATURE: .add(selector)
 $jqList.add(elm);
 
@@ -807,33 +840,6 @@ $jqList.height();
 
 
 // =============================================================================
-// SIGNATURE: .hide()
-$jqList.hide();
-
-elm.style.display = "none";
-
-elmList.forEach(item => item.style.display = "none");
-
-// ---------------------------------
-// SIGNATURE: .hide([duration], [complete])
-$jqList.hide();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .hide(options)
-$jqList.hide();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .hide(duration, [easing], [complete])
-$jqList.hide();
-
-// TODO
-
-
-// =============================================================================
 // SIGNATURE: .hover(handlerIn, handlerOut)
 $jqList.hover();
 
@@ -1442,31 +1448,6 @@ $jqList.serialize();
 // =============================================================================
 // SIGNATURE: .serializeArray()
 $jqList.serializeArray();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .show()
-$jqList.show();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .show([duration], [complete])
-$jqList.show();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .show(options)
-$jqList.show();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .show(duration, [easing], [complete])
-$jqList.show();
 
 // TODO
 
