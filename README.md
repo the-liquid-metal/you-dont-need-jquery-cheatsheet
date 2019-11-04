@@ -1375,11 +1375,21 @@ $jqList.removeAttr();
 // SIGNATURE: .removeClass([className])
 $jqList.removeClass();
 
-// TODO
+elm.className = "";
+
+elmList.forEach(item => item.className = "");
+
+// ---------------------------------
+// SIGNATURE: .removeClass([className])
+$jqList.removeClass(className);
+
+elm.classList.remove(className);
+
+elmList.forEach(item => item.classList.remove(className));
 
 // ---------------------------------
 // SIGNATURE: .removeClass(function)
-$jqList.removeClass();
+$jqList.removeClass(className);
 
 // TODO
 
@@ -1406,16 +1416,18 @@ $jqList.removeProp();
 
 // =============================================================================
 // SIGNATURE: .replaceAll(target)
-$jqList.replaceAll();
+$jqList.replaceAll(otherElm);
 
-// TODO
+otherElm.replaceWith(elm);
 
 
 // =============================================================================
 // SIGNATURE: .replaceWith(newContent)
-$jqList.replaceWith();
+$jqList.replaceWith(markupString);
 
-// TODO
+elm.replaceWith(markupString);
+
+elmList.forEach(item => item.replaceWith(markupString));
 
 // ---------------------------------
 // SIGNATURE: .replaceWith(function)
