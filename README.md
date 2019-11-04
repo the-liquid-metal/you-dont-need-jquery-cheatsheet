@@ -1468,21 +1468,33 @@ $jqList.serializeArray();
 // SIGNATURE: .siblings([selector])
 $jqList.siblings();
 
-// TODO
+[...elm.parentNode.children].filter(item => item !== elm);
+
+// ---------------------------------
+// SIGNATURE: .siblings([selector])
+$jqList.siblings(selector);
+
+[...elm.parentNode.children].filter(item => item !== elm && item.match(selector));
 
 
 // =============================================================================
 // SIGNATURE: .size()
 $jqList.size();
 
-// TODO
+elmList.length
 
 
 // =============================================================================
 // SIGNATURE: .slice(start, [end])
-$jqList.slice();
+$jqList.slice(start);
 
-// TODO
+Array.prototype.slice.call(elmList, start);
+
+// ---------------------------------
+// SIGNATURE: .slice(start, [end])
+$jqList.slice(start, end);
+
+Array.prototype.slice.call(elmList, start, end);
 
 
 // =============================================================================
