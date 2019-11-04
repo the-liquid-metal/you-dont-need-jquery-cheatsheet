@@ -2,9 +2,9 @@
 
 **Why another "You don't need jQuery" article?**
 * They are too verbose: use of wasteful pharenthesis, new line, semicolon, etc;
-  create less concise variable; or even function. Present of function means they
-  don't realize they replace jQuery with "myQuery" :yum:. They don't realize jQuery
-  is so elegance that they fail to replace it.
+  create less concise variable; or even function. Presence of function means they
+  don't realize they replace jQuery with "theirOwnQuery" :yum:. They don't realize
+  jQuery is so elegance that they fail to replace it.
 * The solution is out of context. jQuery solves problems only by javascript. If
   any solution force you to write CSS (or anykind except javascript), it means it
   fails to replace jQuery.
@@ -17,7 +17,7 @@
 
 **How to jump to the point immediately:**
 1. press `[CTRL]+[F]`
-2. then type `[.]`, then type the keyword, then type `[(]`
+2. then type `[.]` or `[#]`, then type the keyword, then type `[(]`
 3. then press `[ENTER]`
 
 **How to read:**
@@ -1747,13 +1747,17 @@ $jqList.unwrap();
 // SIGNATURE: .val()
 $jqList.val();
 
-// TODO
+elm.value;
+
+elmList[0].value;
 
 // ---------------------------------
 // SIGNATURE: .val(value)
-$jqList.val();
+$jqList.val(nonMarkupString);
 
-// TODO
+elm.value = nonMarkupString;
+
+elmList.forEach(item => item.value = nonMarkupString);
 
 // ---------------------------------
 // SIGNATURE: .val(function)
@@ -1769,7 +1773,6 @@ $jqList.width();
 parseFloat(getComputedStyle(elm).width)
 
 parseFloat(getComputedStyle(elmList[0]).width)
-
 
 // ---------------------------------
 // SIGNATURE: .width(value)
