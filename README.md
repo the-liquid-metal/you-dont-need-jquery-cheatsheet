@@ -1603,7 +1603,25 @@ $jqList.toArray();
 // SIGNATURE: .toggle([duration], [complete])
 $jqList.toggle();
 
-// TODO
+elm.style.display = (elm.style.display == "none") ? "block" : "none";
+
+elmList.forEach(item => elm.style.display = (elm.style.display == "none") ? "block" : "none");
+
+// ---------------------------------
+// SIGNATURE: .toggle([duration], [complete])
+$jqList.toggle(number);
+
+elm.style.transition = `height ${number}ms, width ${number}ms`;
+elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
+elm.style.width = (elm.style.width == "0px") ? "200px" : "0px";
+setTimeout(() => elm.style.transition = "", number);
+
+elmList.forEach(item => {
+    item.style.transition = `height ${number}ms, width ${number}ms`;
+    item.style.height = (item.style.height == "0px") ? "200px" : "0px";
+    item.style.width = (item.style.width == "0px") ? "200px" : "0px";
+    setTimeout(() => item.style.transition = "", number);
+});
 
 // ---------------------------------
 // SIGNATURE: .toggle(options)
