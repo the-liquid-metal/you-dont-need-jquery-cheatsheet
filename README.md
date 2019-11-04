@@ -680,6 +680,12 @@ elm.style.transition = `opacity ${number}ms`;
 elm.style.display = "block";
 setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, number);
 
+elmList.forEach(item => {
+    item.style.transition = `opacity ${number}ms`;
+    item.style.display = "block";
+    setTimeout(() => {item.style.opacity = "1"; setTimeout(() => item.style.transition = "", 1)}, number);
+});
+
 // ---------------------------------
 // SIGNATURE: .fadeIn(options)
 $jqList.fadeIn();
@@ -697,9 +703,15 @@ $jqList.fadeIn();
 // SIGNATURE: .fadeOut([duration], [complete])
 $jqList.fadeOut();
 
-elm.style.transition = `opacity ${number}ms`;
-elm.addEventListener("transitionend", () => {elm.style.display = "none"; elm.style.transition = ""}, {once: true});
+elm.style.transition = `opacity 1000ms`;
 elm.style.opacity = "0";
+setTimeout(() => {elm.style.display = "none"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
+
+elmList.forEach(item => {
+    item.style.transition = `opacity 1000ms`;
+    item.style.opacity = "0";
+    setTimeout(() => {item.style.display = "none"; setTimeout(() => item.style.transition = "", 1)}, 1000);
+});
 
 // ---------------------------------
 // SIGNATURE: .fadeOut(options)
