@@ -1500,6 +1500,20 @@ elmList.forEach(item => {
 });
 
 // ---------------------------------
+// SIGNATURE: .slideDown([duration], [complete])
+$jqList.slideDown(number);
+
+elm.style.transition = `height ${number}ms`;
+elm.style.height = "200px";
+setTimeout(() => elm.style.transition = "", number);
+
+elmList.forEach(item => {
+    elm.style.transition = `height ${number}ms`;
+    elm.style.height = "200px";
+    setTimeout(() => elm.style.transition = "", number);
+});
+
+// ---------------------------------
 // SIGNATURE: .slideDown(options)
 $jqList.slideDown();
 
@@ -1516,7 +1530,29 @@ $jqList.slideDown();
 // SIGNATURE: .slideToggle([duration], [complete])
 $jqList.slideToggle();
 
-// TODO
+elm.style.transition = `height 1000ms`;
+elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
+setTimeout(() => elm.style.transition = "", 1000);
+
+elmList.forEach(item => {
+    elm.style.transition = `height 1000ms`;
+    elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
+    setTimeout(() => elm.style.transition = "", 1000);
+});
+
+// ---------------------------------
+// SIGNATURE: .slideToggle([duration], [complete])
+$jqList.slideToggle(number);
+
+elm.style.transition = `height ${number}ms`;
+elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
+setTimeout(() => elm.style.transition = "", number);
+
+elmList.forEach(item => {
+    elm.style.transition = `height ${number}ms`;
+    elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
+    setTimeout(() => elm.style.transition = "", number);
+});
 
 // ---------------------------------
 // SIGNATURE: .slideToggle(options)
@@ -1543,6 +1579,20 @@ elmList.forEach(item => {
     elm.style.transition = `height 1000ms`;
     elm.style.height = "0px";
     setTimeout(() => elm.style.transition = "", 1000);
+});
+
+// ---------------------------------
+// SIGNATURE: .slideUp([duration], [complete])
+$jqList.slideUp(number);
+
+elm.style.transition = `height ${number}ms`;
+elm.style.height = "0px";
+setTimeout(() => elm.style.transition = "", number);
+
+elmList.forEach(item => {
+    elm.style.transition = `height ${number}ms`;
+    elm.style.height = "0px";
+    setTimeout(() => elm.style.transition = "", number);
 });
 
 // ---------------------------------
