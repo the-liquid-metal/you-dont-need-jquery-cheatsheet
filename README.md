@@ -1043,14 +1043,16 @@ $jqList.next();
 // SIGNATURE: .nextAll([selector])
 $jqList.nextAll();
 
-// TODO
+[...elm.parentNode.children].filter((item, idx, self) => idx > self.indexOf(elm));
 
 
 // =============================================================================
 // SIGNATURE: .nextUntil([selector], [filter])
-$jqList.nextUntil();
+$jqList.nextUntil(selector);
 
-// TODO
+const children = elm.parentNode.children;
+const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector) ? idx : acc, NaN);
+[...children].filter((item, idx, self) => idx > self.indexOf(elm) && boundary > self.indexOf(item));
 
 // ---------------------------------
 // SIGNATURE: .nextUntil([element], [filter])
@@ -1270,14 +1272,16 @@ $jqList.prev();
 // SIGNATURE: .prevAll([selector])
 $jqList.prevAll();
 
-// TODO
+[...elm.parentNode.children].filter((item, idx, self) => idx < self.indexOf(elm));
 
 
 // =============================================================================
 // SIGNATURE: .prevUntil([selector], [filter])
-$jqList.prevUntil();
+$jqList.prevUntil(selector);
 
-// TODO
+const children = elm.parentNode.children;
+const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector) ? idx : acc, NaN);
+[...children].filter((item, idx, self) => idx < self.indexOf(elm) && boundary < self.indexOf(item));
 
 // ---------------------------------
 // SIGNATURE: .prevUntil([element], [filter])
@@ -1320,9 +1324,9 @@ $jqList.prop();
 
 // =============================================================================
 // SIGNATURE: .pushStack(elements)
-$jqList.pushStack();
+$jqList.pushStack($otherJqList);
 
-// TODO
+[..elmList, ..otherElmList];
 
 // ---------------------------------
 // SIGNATURE: .pushStack(elements, name, arguments)
@@ -1352,9 +1356,9 @@ $jqList.queue();
 
 // =============================================================================
 // SIGNATURE: .ready(handler)
-$jqList.ready();
+$jqList.ready(func);
 
-// TODO
+(document.readyState !== "loading") ? func() : document.addEventListener("DOMContentLoaded", func);
 
 
 // =============================================================================
