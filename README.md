@@ -150,6 +150,35 @@ let func = function(){};
 
 
 // =============================================================================
+// SIMILAR METHOD: #blur(), #change(), #click(), #contextmenu(), #dblclick(),
+// #focus(), #focusin(), #focusout(), #keydown(), #keypress(), #keyup(), #mousedown(),
+// #mouseenter(), #mouseleave(), #mousemove(), #mouseout(), #mouseover(), #mouseup(),
+// #resize(), #scroll(), #select(), #submit(),
+
+    // ---------------------------------
+    // SIGNATURE: .blur(handler)
+    $jqList.blur(func);
+
+    elm.addEventListener("blur", func);
+
+    elmList.forEach(item => item.addEventListener("blur", func));
+
+    // ---------------------------------
+    // SIGNATURE: .blur([eventData], handler)
+    $jqList.blur();
+
+    // TODO
+
+    // ---------------------------------
+    // SIGNATURE: .blur()
+    $jqList.blur();
+
+    elm.dispatchEvent(new Event("blur"));
+
+    elmList.forEach(item => item.dispatchEvent(new Event("blur")));
+
+
+// =============================================================================
 // SIGNATURE: .add(selector)
 $jqList.add(elm);
 
@@ -383,52 +412,6 @@ $jqList.bind();
 
 
 // =============================================================================
-// SIGNATURE: .blur(handler)
-$jqList.blur(func);
-
-elm.addEventListener("blur", func);
-
-elmList.forEach(item => item.addEventListener("blur", func));
-
-// ---------------------------------
-// SIGNATURE: .blur([eventData], handler)
-$jqList.blur();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .blur()
-$jqList.blur();
-
-elm.dispatchEvent(new Event("blur"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("blur")));
-
-
-// =============================================================================
-// SIGNATURE: .change(handler)
-$jqList.change(func);
-
-elm.addEventListener("change", func);
-
-elmList.forEach(item => item.addEventListener("change", func));
-
-// ---------------------------------
-// SIGNATURE: .change([eventData], handler)
-$jqList.change();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .change()
-$jqList.change();
-
-elm.dispatchEvent(new Event("change"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("change")));
-
-
-// =============================================================================
 // SIGNATURE: .children([selector])
 $jqList.children();
 
@@ -440,29 +423,6 @@ elm.children;
 $jqList.clearQueue();
 
 // TODO
-
-
-// =============================================================================
-// SIGNATURE: .click(handler)
-$jqList.click(func);
-
-elm.addEventListener("click", func);
-
-elmList.forEach(item => item.addEventListener("click", func));
-
-// ---------------------------------
-// SIGNATURE: .click([eventData], handler)
-$jqList.click();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .click()
-$jqList.click();
-
-elm.dispatchEvent(new Event("click");
-
-elmList.forEach(item => item.dispatchEvent(new Event("click"));
 
 
 // =============================================================================
@@ -517,25 +477,6 @@ $jqList.contents();
 
 
 // =============================================================================
-// SIGNATURE: .contextmenu(handler)
-$jqList.contextmenu();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .contextmenu([eventData], handler)
-$jqList.contextmenu();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .contextmenu()
-$jqList.contextmenu();
-
-// TODO
-
-
-// =============================================================================
 // SIGNATURE: .css(propertyName)
 $jqList.css();
 
@@ -585,29 +526,6 @@ $jqList.data();
 $jqList.data();
 
 // TODO
-
-
-// =============================================================================
-// SIGNATURE: .dblclick(handler)
-$jqList.dblclick(func);
-
-elm.addEventListener("dblclick", func);
-
-elmList.forEach(item => item.addEventListener("dblclick", func));
-
-// ---------------------------------
-// SIGNATURE: .dblclick([eventData], handler)
-$jqList.dblclick();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .dblclick()
-$jqList.dblclick();
-
-elm.dispatchEvent(new Event("dblclick"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("dblclick")));
 
 
 // =============================================================================
@@ -837,75 +755,6 @@ $jqList.first();
 
 
 // =============================================================================
-// SIGNATURE: .focus(handler)
-$jqList.focus(func);
-
-elm.addEventListener("focus", func);
-
-elmList.forEach(item => item.addEventListener("focus", func));
-
-// ---------------------------------
-// SIGNATURE: .focus([eventData], handler)
-$jqList.focus();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .focus()
-$jqList.focus();
-
-elm.dispatchEvent(new Event("focus"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("focus")));
-
-
-// =============================================================================
-// SIGNATURE: .focusin(handler)
-$jqList.focusin(func);
-
-elm.addEventListener("focusin", func);
-
-elmList.forEach(item => item.addEventListener("focusin", func));
-
-// ---------------------------------
-// SIGNATURE: .focusin([eventData], handler)
-$jqList.focusin();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .focusin()
-$jqList.focusin();
-
-elm.dispatchEvent(new Event("focusin"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("focusin")));
-
-
-// =============================================================================
-// SIGNATURE: .focusout(handler)
-$jqList.focusout(func);
-
-elm.addEventListener("focusout", func);
-
-elmList.forEach(item => item.addEventListener("focusout", func));
-
-// ---------------------------------
-// SIGNATURE: .focusout([eventData], handler)
-$jqList.focusout();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .focusout()
-$jqList.focusout();
-
-elm.dispatchEvent(new Event("focusout"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("focusout")));
-
-
-// =============================================================================
 // SIGNATURE: .get(index)
 $jqList.get();
 
@@ -1115,75 +964,6 @@ $jqList.is();
 
 
 // =============================================================================
-// SIGNATURE: .keydown(handler)
-$jqList.keydown(func);
-
-elm.addEventListener("keydown", func);
-
-elmList.forEach(item => item.addEventListener("keydown", func));
-
-// ---------------------------------
-// SIGNATURE: .keydown([eventData], handler)
-$jqList.keydown();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .keydown()
-$jqList.keydown();
-
-elm.dispatchEvent(new Event("keydown"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("keydown")));
-
-
-// =============================================================================
-// SIGNATURE: .keypress(handler)
-$jqList.keypress(func);
-
-elm.addEventListener("keypress", func);
-
-elmList.forEach(item => item.addEventListener("keypress", func));
-
-// ---------------------------------
-// SIGNATURE: .keypress([eventData], handler)
-$jqList.keypress();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .keypress()
-$jqList.keypress();
-
-elm.dispatchEvent(new Event("keypress"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("keypress")));
-
-
-// =============================================================================
-// SIGNATURE: .keyup(handler)
-$jqList.keyup(func);
-
-elm.addEventListener("keyup", func);
-
-elmList.forEach(item => item.addEventListener("keyup", func));
-
-// ---------------------------------
-// SIGNATURE: .keyup([eventData], handler)
-$jqList.keyup();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .keyup()
-$jqList.keyup();
-
-elm.dispatchEvent(new Event("keyup"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("keyup")));
-
-
-// =============================================================================
 // SIGNATURE: .last()
 $jqList.last();
 
@@ -1236,167 +1016,6 @@ $jqList.load();
 $jqList.map();
 
 // TODO
-
-
-// =============================================================================
-// SIGNATURE: .mousedown(handler)
-$jqList.mousedown(func);
-
-elm.addEventListener("mousedown", func);
-
-elmList.forEach(item => item.addEventListener("mousedown", func));
-
-// ---------------------------------
-// SIGNATURE: .mousedown([eventData], handler)
-$jqList.mousedown();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .mousedown()
-$jqList.mousedown();
-
-elm.dispatchEvent(new Event("mousedown"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("mousedown")));
-
-
-// =============================================================================
-// SIGNATURE: .mouseenter(handler)
-$jqList.mouseenter(func);
-
-elm.addEventListener("mouseenter", func);
-
-elmList.forEach(item => item.addEventListener("mouseenter", func));
-
-// ---------------------------------
-// SIGNATURE: .mouseenter([eventData], handler)
-$jqList.mouseenter();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .mouseenter()
-$jqList.mouseenter();
-
-elm.dispatchEvent(new Event("mouseenter"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("mouseenter")));
-
-
-// =============================================================================
-// SIGNATURE: .mouseleave(handler)
-$jqList.mouseleave(func);
-
-elm.addEventListener("mouseleave", func);
-
-elmList.forEach(item => item.addEventListener("mouseleave", func));
-
-// ---------------------------------
-// SIGNATURE: .mouseleave([eventData], handler)
-$jqList.mouseleave();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .mouseleave()
-$jqList.mouseleave();
-
-elm.dispatchEvent(new Event("mouseleave"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("mouseleave")));
-
-
-// =============================================================================
-// SIGNATURE: .mousemove(handler)
-$jqList.mousemove(func);
-
-elm.addEventListener("mousemove", func);
-
-elmList.forEach(item => item.addEventListener("mousemove", func));
-
-// ---------------------------------
-// SIGNATURE: .mousemove([eventData], handler)
-$jqList.mousemove();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .mousemove()
-$jqList.mousemove();
-
-elm.dispatchEvent(new Event("mousemove"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("mousemove")));
-
-
-// =============================================================================
-// SIGNATURE: .mouseout(handler)
-$jqList.mouseout(func);
-
-elm.addEventListener("mouseout", func);
-
-elmList.forEach(item => item.addEventListener("mouseout", func));
-
-// ---------------------------------
-// SIGNATURE: .mouseout([eventData], handler)
-$jqList.mouseout();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .mouseout()
-$jqList.mouseout();
-
-elm.dispatchEvent(new Event("mouseout"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("mouseout")));
-
-
-// =============================================================================
-// SIGNATURE: .mouseover(handler)
-$jqList.mouseover(func);
-
-elm.addEventListener("mouseover", func);
-
-elmList.forEach(item => item.addEventListener("mouseover", func));
-
-// ---------------------------------
-// SIGNATURE: .mouseover([eventData], handler)
-$jqList.mouseover();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .mouseover()
-$jqList.mouseover();
-
-elm.dispatchEvent(new Event("mouseover"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("mouseover")));
-
-
-// =============================================================================
-// SIGNATURE: .mouseup(handler)
-$jqList.mouseup(func);
-
-elm.addEventListener("mouseup", func);
-
-elmList.forEach(item => item.addEventListener("mouseup", func));
-
-// ---------------------------------
-// SIGNATURE: .mouseup([eventData], handler)
-$jqList.mouseup();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .mouseup()
-$jqList.mouseup();
-
-elm.dispatchEvent(new Event("mouseup"));
-
-elmList.forEach(item => item.dispatchEvent(new Event("mouseup")));
 
 
 // =============================================================================
@@ -1788,44 +1407,6 @@ $jqList.replaceWith();
 
 
 // =============================================================================
-// SIGNATURE: .resize(handler)
-$jqList.resize();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .resize([eventData], handler)
-$jqList.resize();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .resize()
-$jqList.resize();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .scroll(handler)
-$jqList.scroll();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .scroll([eventData], handler)
-$jqList.scroll();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .scroll()
-$jqList.scroll();
-
-// TODO
-
-
-// =============================================================================
 // SIGNATURE: .scrollLeft()
 $jqList.scrollLeft();
 
@@ -1847,25 +1428,6 @@ $jqList.scrollTop();
 // ---------------------------------
 // SIGNATURE: .scrollTop(value)
 $jqList.scrollTop();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .select(handler)
-$jqList.select();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .select([eventData], handler)
-$jqList.select();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .select()
-$jqList.select();
 
 // TODO
 
@@ -1996,25 +1558,6 @@ $jqList.stop();
 // ---------------------------------
 // SIGNATURE: .stop([queue], [clearQueue], [jumpToEnd])
 $jqList.stop();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .submit(handler)
-$jqList.submit();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .submit([eventData], handler)
-$jqList.submit();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .submit()
-$jqList.submit();
 
 // TODO
 
