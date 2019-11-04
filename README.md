@@ -623,7 +623,9 @@ $jqList.detach();
 // SIGNATURE: .die()
 $jqList.die();
 
-// TODO
+elm.parentNode.replaceChild(elm.cloneNode(true), elm);
+
+elmList.forEach(item => item.parentNode.replaceChild(item.cloneNode(true), item));
 
 // ---------------------------------
 // SIGNATURE: .die(eventType, [handler])
@@ -1100,7 +1102,9 @@ $jqList.off();
 // SIGNATURE: .off()
 $jqList.off();
 
-// TODO
+elm.parentNode.replaceChild(elm.cloneNode(true), elm);
+
+elmList.forEach(item => item.parentNode.replaceChild(item.cloneNode(true), item));
 
 
 // =============================================================================
@@ -1702,7 +1706,9 @@ $jqList.unbind();
 // SIGNATURE: .unbind()
 $jqList.unbind();
 
-// TODO
+elm.parentNode.replaceChild(elm.cloneNode(true), elm);
+
+elmList.forEach(item => item.parentNode.replaceChild(item.cloneNode(true), item));
 
 
 // =============================================================================
