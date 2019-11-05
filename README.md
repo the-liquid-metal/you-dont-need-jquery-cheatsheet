@@ -1993,13 +1993,11 @@ elmList.forEach((elm, idx) => elm.style.width = (idx * 5 + width) + 'px');
 
 // =============================================================================
 // SIGNATURE: .wrap(wrappingElement)
-$jqList.wrap(otherElm || otherElmList || markupString);
+$jqList.wrap(otherElm || markupString);
 
 elm.parentNode.insertBefore(otherElm.cloneNode(true), elm).appendChild(elm);
 
-elm.parentNode.insertBefore(otherElmList[0].cloneNode(true), elm).appendChild(elm);
-
-elmList.forEach(elm => {/* same as above, choose one */});
+elmList.forEach(elm => {/* same as above */});
 
 newElm = (new Range).createContextualFragment(markupString).firstElementChild;
 elm.parentNode.insertBefore(newElm, elm).appendChild(elm);
@@ -2012,7 +2010,7 @@ elmList.forEach(elm => elm.parentNode.insertBefore(newElm.cloneNode(true), elm).
 $jqList.wrap(idx => (idx % 2) ? markupString1 : markupString2);
 
 elmList.forEach((elm, idx) => {
-    wrapper = (idx % 2) ? markupString1 : markupString1;
+    wrapper = (idx % 2) ? markupString1 : markupString2;
     newElm = (new Range).createContextualFragment(wrapper).firstElementChild;
     elm.parentNode.insertBefore(newElm, elm).appendChild(elm);
 });
@@ -2034,15 +2032,24 @@ $jqList.wrapAll(func);
 
 // =============================================================================
 // SIGNATURE: .wrapInner(wrappingElement)
-$jqList.wrapInner();
+$jqList.wrapInner(otherElm);
 
-// TODO
+newElm = otherElm.cloneNode(true);
+elm.prepend(newElm);
+[...elm.childNodes].forEach(item => (newElm !== item) && newElm.append(item));
+
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .wrapInner(function)
-$jqList.wrapInner(func);
+$jqList.wrapInner(idx => (idx % 2) ? markupString1 : markupString2);
 
-// TODO
+elmList.forEach((elm, idx) => {
+    wrapper = (idx % 2) ? markupString1 : markupString2;
+    newElm = (new Range).createContextualFragment(wrapper).firstElementChild;
+    elm.prepend(newElm);
+    [...elm.childNodes].forEach(item => (newElm !== item) && newElm.append(item));
+});
 
 
 ```
