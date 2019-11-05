@@ -1055,6 +1055,14 @@ const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.
 [...children].filter((item, idx, self) => idx > self.indexOf(elm) && boundary > self.indexOf(item));
 
 // ---------------------------------
+// SIGNATURE: .nextUntil([selector], [filter])
+$jqList.nextUntil(selector1, selector2);
+
+const children = elm.parentNode.children;
+const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector1) ? idx : acc, NaN);
+[...children].filter((item, idx, self) => idx > self.indexOf(elm) && boundary > self.indexOf(item) && item.matches(selector2));
+
+// ---------------------------------
 // SIGNATURE: .nextUntil([element], [filter])
 $jqList.nextUntil();
 
@@ -1282,6 +1290,14 @@ $jqList.prevUntil(selector);
 const children = elm.parentNode.children;
 const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector) ? idx : acc, NaN);
 [...children].filter((item, idx, self) => idx < self.indexOf(elm) && boundary < self.indexOf(item));
+
+// ---------------------------------
+// SIGNATURE: .prevUntil([selector], [filter])
+$jqList.prevUntil(selector1, selector2);
+
+const children = elm.parentNode.children;
+const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector1) ? idx : acc, NaN);
+[...children].filter((item, idx, self) => idx < self.indexOf(elm) && boundary < self.indexOf(item) && item.matches(selector2));
 
 // ---------------------------------
 // SIGNATURE: .prevUntil([element], [filter])
