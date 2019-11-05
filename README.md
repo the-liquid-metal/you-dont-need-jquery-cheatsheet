@@ -116,11 +116,12 @@ But if you see `elmList.forEach(/* ... */)`, this is always safety.
 <br/>
 
 If you feel disturbed by the code being covered, copy this script, and execute
-in console window:
+in console window (note: only effective on width screen):
 ```js
 (() => {
     let mdBody = document.querySelector(".markdown-body");
     let parent = mdBody.parentNode;
+    let current = mdBody;
     while(parent) {
         parent.childNodes.forEach(item => {
             let style = item.style;
@@ -128,7 +129,9 @@ in console window:
             style.setProperty('margin', '0px', 'important');
             style.setProperty('padding', '0px', 'important');
             style.setProperty('border', '0px', 'important');
+            if (item != current) style.setProperty('display', 'none', 'important');
         });
+        current = parent;
         parent = parent.parentNode;
     }
     mdBody.style.width = window.document.documentElement.clientWidth + "px";
