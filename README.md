@@ -409,18 +409,55 @@ elmList.forEach(item => {
 
 
 // =============================================================================
-// SIGNATURE: .append(content, [content])
-$jqList.append(otherElm);
+// SIMILAR METHOD: #append(), #prepend()
 
-elm.appendChild(otherElm);
+    // ---------------------------------
+    // SIGNATURE: .append(content, [content])
+    $jqList.append(otherElm || nonMarkupString);
 
-elm.append(otherElm || nonMarkupString);
+    elm.append(otherElm || nonMarkupString);
 
-// ---------------------------------
-// SIGNATURE: .append(function)
-$jqList.append(func);
+    elmList.forEach(item => item.append(otherElm.cloneNode(true)));
+    otherElm.remove();
 
-// TODO
+    elmList.forEach(item => item.append(nonMarkupString));
+
+    // ---------------------------------
+    // SIGNATURE: .append(content, [content])
+    $jqList.append(markupString);
+
+    elm.append((new Range).createContextualFragment(markupString).firstElementChild);
+
+    newElm = (new Range).createContextualFragment(markupString).firstElementChild;
+    elmList.forEach(item => item.append(newElm.cloneNode(true)));
+
+    // ---------------------------------
+    // SIGNATURE: .append(content, [content])
+    $jqList.append(otherElm1, otherElm2, otherElm3 /* and any another params */);
+
+    [otherElm1, otherElm2, otherElm3 /* and any another params */].forEach(item => elm.append(item));
+
+    [otherElm1, otherElm2, otherElm3 /* and any another params */]
+        .forEach(item1 => elmList.forEach(item2 => item2.append(item1.cloneNode(true))))
+        .forEach(item => item.remove());
+
+    // ---------------------------------
+    // SIGNATURE: .append(content, [content])
+    $jqList.append(markupString1, markupString2, markupString3 /* and any another params */);
+
+    [markupString1, markupString2, markupString3 /* and any another params */]
+        .map(item => (new Range).createContextualFragment(item).firstElementChild)
+        .forEach(item => elm.append(item));
+
+    [markupString1, markupString2, markupString3 /* and any another params */]
+        .map(item => (new Range).createContextualFragment(item).firstElementChild)
+        .forEach(item1 => elmList.forEach(item2 => item2.append(item1.cloneNode(true))));
+
+    // ---------------------------------
+    // SIGNATURE: .append(function)
+    $jqList.append(func);
+
+    // TODO
 
 
 // =============================================================================
@@ -1294,55 +1331,6 @@ $jqList.parentsUntil();
 // =============================================================================
 // SIGNATURE: .position()
 $jqList.position();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .prepend(content, [content])
-$jqList.prepend(otherElm || nonMarkupString);
-
-elm.prepend(otherElm || nonMarkupString);
-
-elmList.forEach(item => item.prepend(otherElm.cloneNode(true)));
-otherElm.remove();
-
-elmList.forEach(item => item.prepend(nonMarkupString));
-
-// ---------------------------------
-// SIGNATURE: .prepend(content, [content])
-$jqList.prepend(markupString);
-
-elm.prepend((new Range).createContextualFragment(markupString).firstElementChild);
-
-newElm = (new Range).createContextualFragment(markupString).firstElementChild;
-elmList.forEach(item => item.prepend(newElm.cloneNode(true)));
-
-// ---------------------------------
-// SIGNATURE: .prepend(content, [content])
-$jqList.prepend(otherElm1, otherElm2, otherElm3 /* and any another params */);
-
-[otherElm1, otherElm2, otherElm3 /* and any another params */].forEach(item => elm.prepend(item));
-
-[otherElm1, otherElm2, otherElm3 /* and any another params */]
-    .forEach(item1 => elmList.forEach(item2 => item2.prepend(item1.cloneNode(true))))
-    .forEach(item => item.remove());
-
-// ---------------------------------
-// SIGNATURE: .prepend(content, [content])
-$jqList.prepend(markupString1, markupString2, markupString3 /* and any another params */);
-
-[markupString1, markupString2, markupString3 /* and any another params */]
-    .map(item => (new Range).createContextualFragment(item).firstElementChild)
-    .forEach(item => elm.prepend(item));
-
-[markupString1, markupString2, markupString3 /* and any another params */]
-    .map(item => (new Range).createContextualFragment(item).firstElementChild)
-    .forEach(item1 => elmList.forEach(item2 => item2.prepend(item1.cloneNode(true))));
-
-// ---------------------------------
-// SIGNATURE: .prepend(function)
-$jqList.prepend(func);
 
 // TODO
 
