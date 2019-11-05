@@ -1965,6 +1965,9 @@ $jqList.undelegate();
 // SIGNATURE: .unwrap()
 $jqList.unwrap();
 
+const parent = elm.parentNode;
+(parent != document.body) && parent.parentNode.insertBefore(elm, parent).parentNode.removeChild(parent);
+
 elmList.forEach(item => {
     const parent = item.parentNode;
     (parent != document.body) && parent.parentNode.insertBefore(item, parent).parentNode.removeChild(parent);
@@ -1972,9 +1975,27 @@ elmList.forEach(item => {
 
 // ---------------------------------
 // SIGNATURE: .unwrap([selector])
-$jqList.unwrap();
+$jqList.unwrap(selector);
 
-// TODO
+
+let current = elm;
+let parent = elm.parentNode;
+while (!parent.matches(selector) && parent != document.body) {
+    current = parent;
+    parent = parent.parentNode;
+}
+(parent != document.body) && parent.parentNode.insertBefore(current, parent).parentNode.removeChild(parent);
+
+
+elmList.forEach(item => {
+    let current = item;
+    let parent = item.parentNode;
+    while (!parent.matches(selector) && parent != document.body) {
+        current = parent;
+        parent = parent.parentNode;
+    }
+    (parent != document.body) && parent.parentNode.insertBefore(current, parent).parentNode.removeChild(parent);
+});
 
 
 // =============================================================================
