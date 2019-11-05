@@ -1036,7 +1036,13 @@ $jqList.map();
 // SIGNATURE: .next([selector])
 $jqList.next();
 
-// TODO
+elm.nextElementSibling;
+
+// ---------------------------------
+// SIGNATURE: .next([selector])
+$jqList.next(selector);
+
+[...elm.parentNode.children].reduce((acc, item, idx, self) => (!acc && idx > self.indexOf(elm) && item.matches(selector)) ? item : acc, null);
 
 
 // =============================================================================
@@ -1273,7 +1279,13 @@ $jqList.prependTo();
 // SIGNATURE: .prev([selector])
 $jqList.prev();
 
-// TODO
+el.previousElementSibling;
+
+// ---------------------------------
+// SIGNATURE: .prev([selector])
+$jqList.prev(selector);
+
+[...elm.parentNode.children].reduceRight((acc, item, idx, self) => (!acc && idx < self.indexOf(elm) && item.matches(selector)) ? item : acc, null);
 
 
 // =============================================================================
