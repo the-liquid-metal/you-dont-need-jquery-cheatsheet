@@ -1993,7 +1993,13 @@ elmList.forEach((elm, idx) => elm.style.width = (idx * 5 + width) + 'px');
 
 // =============================================================================
 // SIGNATURE: .wrap(wrappingElement)
-$jqList.wrap(markupString);
+$jqList.wrap(otherElm || otherElmList || markupString);
+
+elm.parentNode.insertBefore(otherElm.cloneNode(true), elm).appendChild(elm);
+
+elm.parentNode.insertBefore(otherElmList[0].cloneNode(true), elm).appendChild(elm);
+
+elmList.forEach(elm => {/* same as above, choose one */});
 
 newElm = (new Range).createContextualFragment(markupString).firstElementChild;
 elm.parentNode.insertBefore(newElm, elm).appendChild(elm);
@@ -2002,25 +2008,22 @@ newElm = (new Range).createContextualFragment(markupString).firstElementChild;
 elmList.forEach(elm => elm.parentNode.insertBefore(newElm.cloneNode(true), elm).appendChild(elm));
 
 // ---------------------------------
-// SIGNATURE: .wrap(wrappingElement)
-$jqList.wrap(otherElm);
-
-elm.parentNode.insertBefore(otherElm.cloneNode(true), elm).appendChild(elm);
-
-elmList.forEach(elm => {/* same as above */});
-
-// ---------------------------------
 // SIGNATURE: .wrap(function)
-$jqList.wrap(func);
+$jqList.wrap(idx => (idx % 2) ? markupString1 : markupString2);
 
-// TODO
+elmList.forEach((elm, idx) => {
+    wrapper = (idx % 2) ? markupString1 : markupString1;
+    newElm = (new Range).createContextualFragment(wrapper).firstElementChild;
+    elm.parentNode.insertBefore(newElm, elm).appendChild(elm);
+});
 
 
 // =============================================================================
 // SIGNATURE: .wrapAll(wrappingElement)
-$jqList.wrapAll();
+$jqList.wrapAll(otherElm);
 
-// TODO
+newElm = elmList[0].parentNode.insertBefore(otherElm.cloneNode(true), elmList[0]);
+elmList.forEach(elm => newElm.append(elm));
 
 // ---------------------------------
 // SIGNATURE: .wrapAll(function)
