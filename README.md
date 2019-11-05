@@ -115,8 +115,26 @@ But if you see `elmList.forEach(/* ... */)`, this is always safety.
 
 <br/>
 
-If you feel disturbed by the code being covered, there is a bare version of this article:
-[here](https://raw.githubusercontent.com/the-liquid-metal/you-dont-need-jquery-cheatsheet/master/README.md)
+If you feel disturbed by the code being covered, copy this script, and execute
+in console window:
+```js
+(() => {
+    let mdBody = document.querySelector(".markdown-body");
+    let parent = mdBody.parentNode;
+    while(parent) {
+        parent.childNodes.forEach(item => {
+            let style = item.style;
+            if (item == document.body || !style) return;
+            style.setProperty('margin', '0px', 'important');
+            style.setProperty('padding', '0px', 'important');
+            style.setProperty('border', '0px', 'important');
+        });
+        parent = parent.parentNode;
+    }
+    mdBody.style.width = window.document.documentElement.clientWidth + "px";
+    mdBody.style.setProperty('padding', '10px', 'important');
+})();
+```
 
 
 <br/><br/>
