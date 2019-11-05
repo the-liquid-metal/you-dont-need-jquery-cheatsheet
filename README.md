@@ -239,21 +239,31 @@ let func = function(){};
 
     // ---------------------------------
     // SIGNATURE: .hide([duration], [complete])
-    $jqList.hide();
-
-    // TODO
+    // see: .hide(duration, [easing], [complete])
 
     // ---------------------------------
     // SIGNATURE: .hide(options)
-    $jqList.hide();
+    $jqList.hide(options);
 
-    // TODO
+    elm.style.transition = `all ${options.duration}ms ${options.easing}`;
+    elm.style.height = "0px";
+    elm.style.width = "0px";
+    elm.style.opacity = "0";
+    setTimeout(() => {elm.style.transition = ""; options.complete()}, options.duration);
+
+    elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .hide(duration, [easing], [complete])
-    $jqList.hide();
+    $jqList.hide(duration, easing, complete);
 
-    // TODO
+    elm.style.transition = `all ${duration}ms ${easing}`;
+    elm.style.height = "0px";
+    elm.style.width = "0px";
+    elm.style.opacity = "0";
+    setTimeout(() => {elm.style.transition = ""; complete()}, duration);
+
+    elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1726,32 +1736,37 @@ elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .toggle([duration], [complete])
-$jqList.toggle(number);
+// see: .toggle(duration, [easing], [complete])
 
-elm.style.transition = `height ${number}ms, width ${number}ms`;
+// ---------------------------------
+// SIGNATURE: .toggle(options)
+$jqList.toggle(options);
+
+elm.style.transition = `all ${options.duration}ms ${options.easing}`;
 elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
 elm.style.width = (elm.style.width == "0px") ? "200px" : "0px";
-setTimeout(() => elm.style.transition = "", number);
+setTimeout(() => {elm.style.transition = ""; options.complete()}, options.duration);
 
 elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
-// SIGNATURE: .toggle(options)
-$jqList.toggle();
-
-// TODO
-
-// ---------------------------------
 // SIGNATURE: .toggle(duration, [easing], [complete])
-$jqList.toggle();
+$jqList.toggle(duration, easing, complete);
 
-// TODO
+elm.style.transition = `all ${duration}ms ${easing}`;
+elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
+elm.style.width = (elm.style.width == "0px") ? "200px" : "0px";
+setTimeout(() => {elm.style.transition = ""; complete()}, duration);
+
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .toggle(display)
-$jqList.toggle();
+$jqList.toggle(display);
 
-// TODO
+elm.style.display = display ? "block" : "none";
+
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
