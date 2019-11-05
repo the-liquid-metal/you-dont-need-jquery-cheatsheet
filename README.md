@@ -113,6 +113,12 @@ if (elmList[0]) {
 
 But if you see `elmList.forEach(/* ... */)`, this is always safety.
 
+<br/>
+
+If you feel disturbed by the code being covered, there is a bare version of this article:
+[here](https://raw.githubusercontent.com/the-liquid-metal/you-dont-need-jquery-cheatsheet/master/README.md)
+
+
 <br/><br/>
 
 ## Here we are:
@@ -1257,9 +1263,23 @@ $jqList.position();
 
 // =============================================================================
 // SIGNATURE: .prepend(content, [content])
-$jqList.prepend();
+$jqList.prepend(otherElm || nonMarkupString);
 
-// TODO
+elm.prepend(otherElm || nonMarkupString);
+
+elmList.forEach(item => item.prepend(otherElm.cloneNode(true)));
+otherElm.remove();
+
+elmList.forEach(item => item.prepend(nonMarkupString));
+
+// ---------------------------------
+// SIGNATURE: .prepend(content, [content])
+$jqList.prepend(markupString);
+
+elm.prepend((new Range).createContextualFragment(markupString).firstElementChild);
+
+newElm = (new Range).createContextualFragment(markupString).firstElementChild;
+elmList.forEach(item => item.prepend(newElm.cloneNode(true)));
 
 // ---------------------------------
 // SIGNATURE: .prepend(function)
@@ -1960,8 +1980,8 @@ $jqList.width();
 // SIGNATURE: .wrap(wrappingElement)
 $jqList.wrap(markupString);
 
-otherElm = (new Range).createContextualFragment(markupString).firstElementChild
-elmList.forEach(item => item.parentNode.insertBefore(otherElm.cloneNode(true), item).appendChild(item));
+newElm = (new Range).createContextualFragment(markupString).firstElementChild
+elmList.forEach(item => item.parentNode.insertBefore(newElm.cloneNode(true), item).appendChild(item));
 
 // ---------------------------------
 // SIGNATURE: .wrap(wrappingElement)
