@@ -296,17 +296,17 @@ $jqList.addBack();
 
 // =============================================================================
 // SIGNATURE: .addClass(className)
-$jqList.addClass("new-class");
+$jqList.addClass(className);
 
-elm.classList.add("new-class");
+elm.classList.add(className);
 
-elmList.forEach(item => item.classList.add("new-class"));
+elmList.forEach(item => item.classList.add(className));
 
 // ---------------------------------
 // SIGNATURE: .addClass(function)
-$jqList.addClass(func);
+$jqList.addClass((idx, className) => (idx % 2) ? "odd" : "even");
 
-// TODO
+elmList.forEach((item, idx) => item.classList.add((idx % 2) ? "odd" : "even"));
 
 
 // =============================================================================
@@ -1500,9 +1500,9 @@ elmList.forEach(item => item.classList.remove(className));
 
 // ---------------------------------
 // SIGNATURE: .removeClass(function)
-$jqList.removeClass(func);
+$jqList.removeClass((idx, className) => (idx % 2) ? "odd" : "even");
 
-// TODO
+elmList.forEach((item, idx) => item.classList.remove((idx % 2) ? "odd" : "even"));
 
 
 // =============================================================================
