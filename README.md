@@ -381,19 +381,31 @@ $jqList.andSelf();
 
 // =============================================================================
 // SIGNATURE: .animate(properties, [duration], [easing], [complete])
-$jqList.animate(cssObject, [duration], [easing], [complete]);
+$jqList.animate(cssObject, duration, easing, func);
 
 elm.style.transition = `all ${duration} ${easing}`;
 Object.keys(cssObject).forEach(key => elm.style[key] = cssObject[key]);
+setTimeout(() => {elm.style.transition = ""; func()}, duration);
 
 elmList.forEach(item => {
     item.style.transition = `all ${duration} ${easing}`;
     Object.keys(cssObject).forEach(key => item.style[key] = cssObject[key]);
+    setTimeout(() => {item.style.transition = ""; func()}, duration);
 });
 
 // ---------------------------------
 // SIGNATURE: .animate(properties, options)
-$jqList.animate(cssObject, [duration], [easing], [complete]);
+$jqList.animate(cssObject, opt);
+
+elm.style.transition = `all ${opt.duration} ${opt.easing}`;
+Object.keys(cssObject).forEach(key => elm.style[key] = cssObject[key]);
+setTimeout(() => {elm.style.transition = ""; opt.complete()}, opt.duration);
+
+elmList.forEach(item => {
+    item.style.transition = `all ${opt.duration} ${opt.easing}`;
+    Object.keys(cssObject).forEach(key => item.style[key] = cssObject[key]);
+    setTimeout(() => {item.style.transition = ""; opt.complete()}, opt.duration);
+});
 
 
 // =============================================================================
