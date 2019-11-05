@@ -188,7 +188,7 @@ let func = function(){};
 
     elm.addEventListener("blur", func);
 
-    elmList.forEach(item => item.addEventListener("blur", func));
+    elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .blur([eventData], handler)
@@ -202,7 +202,7 @@ let func = function(){};
 
     elm.dispatchEvent(new Event("blur"));
 
-    elmList.forEach(item => item.dispatchEvent(new Event("blur")));
+    elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -214,7 +214,7 @@ let func = function(){};
 
     elm.addEventListener("error", func);
 
-    elmList.forEach(item => item.addEventListener("error", func));
+    elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .error([eventData], handler)
@@ -235,7 +235,7 @@ let func = function(){};
 
     elm.style.display = "none";
 
-    elmList.forEach(item => item.style.display = "none");
+    elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .hide([duration], [complete])
@@ -300,7 +300,7 @@ $jqList.addClass(className);
 
 elm.classList.add(className);
 
-elmList.forEach(item => item.classList.add(className));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .addClass(function)
@@ -315,7 +315,7 @@ $jqList.after(markupString);
 
 elm.insertAdjacentHTML("afterend", markupString);
 
-elmList.forEach(item => item.insertAdjacentHTML("afterend", markupString));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .after(function)
@@ -387,11 +387,7 @@ elm.style.transition = `all ${duration} ${easing}`;
 Object.keys(cssObject).forEach(key => elm.style[key] = cssObject[key]);
 setTimeout(() => {elm.style.transition = ""; func()}, duration);
 
-elmList.forEach(item => {
-    item.style.transition = `all ${duration} ${easing}`;
-    Object.keys(cssObject).forEach(key => item.style[key] = cssObject[key]);
-    setTimeout(() => {item.style.transition = ""; func()}, duration);
-});
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .animate(properties, options)
@@ -401,11 +397,7 @@ elm.style.transition = `all ${opt.duration} ${opt.easing}`;
 Object.keys(cssObject).forEach(key => elm.style[key] = cssObject[key]);
 setTimeout(() => {elm.style.transition = ""; opt.complete()}, opt.duration);
 
-elmList.forEach(item => {
-    item.style.transition = `all ${opt.duration} ${opt.easing}`;
-    Object.keys(cssObject).forEach(key => item.style[key] = cssObject[key]);
-    setTimeout(() => {item.style.transition = ""; opt.complete()}, opt.duration);
-});
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -417,10 +409,10 @@ elmList.forEach(item => {
 
     elm.append(otherElm || nonMarkupString);
 
-    elmList.forEach(item => item.append(otherElm.cloneNode(true)));
+    elmList.forEach(elm => elm.append(otherElm.cloneNode(true)));
     otherElm.remove();
 
-    elmList.forEach(item => item.append(nonMarkupString));
+    elmList.forEach(elm => elm.append(nonMarkupString));
 
     // ---------------------------------
     // SIGNATURE: .append(content, [content])
@@ -429,7 +421,7 @@ elmList.forEach(item => {
     elm.append((new Range).createContextualFragment(markupString).firstElementChild);
 
     newElm = (new Range).createContextualFragment(markupString).firstElementChild;
-    elmList.forEach(item => item.append(newElm.cloneNode(true)));
+    elmList.forEach(elm => elm.append(newElm.cloneNode(true)));
 
     // ---------------------------------
     // SIGNATURE: .append(content, [content])
@@ -477,11 +469,11 @@ elmList[0].getAttribute("placeholder");
 
 // ---------------------------------
 // SIGNATURE: .attr(attributeName, value)
-$jqList.attr("placeholder", "price");
+$jqList.attr(attributeName, nonMarkupString);
 
-elm.setAttribute("placeholder", "price");
+elm.setAttribute(attributeName, nonMarkupString);
 
-elmList.forEach(item => item.setAttribute("placeholder"));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .attr(attributes)
@@ -502,7 +494,7 @@ $jqList.before(markupString);
 
 elm.insertAdjacentHTML("beforebegin", markupString);
 
-elmList.forEach(item => item.insertAdjacentHTML("beforebegin", markupString));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .before(function)
@@ -523,7 +515,7 @@ $jqList.bind(eventName, func);
 
 elm.addEventListener(eventName, func);
 
-elmList.forEach(item => item.addEventListener(eventName, func));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .bind(eventType, [eventData], [preventBubble])
@@ -621,7 +613,7 @@ $jqList.css("border-width", "20px");
 
 elm.style.borderWidth = "20px";
 
-elmList.forEach(item => item.style.borderWidth = "20px");
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .css(propertyName, function)
@@ -701,7 +693,7 @@ $jqList.die();
 
 elm.parentNode.replaceChild(elm.cloneNode(true), elm);
 
-elmList.forEach(item => item.parentNode.replaceChild(item.cloneNode(true), item));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .die(eventType, [handler])
@@ -709,7 +701,7 @@ $jqList.die(eventName, func);
 
 elm.removeEventListener(eventName, func);
 
-elmList.forEach(item => item.removeEventListener(eventName, func));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .die(events)
@@ -760,11 +752,7 @@ elm.style.transition = `opacity ${number}ms`;
 elm.style.display = "block";
 setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, number);
 
-elmList.forEach(item => {
-    item.style.transition = `opacity ${number}ms`;
-    item.style.display = "block";
-    setTimeout(() => {item.style.opacity = "1"; setTimeout(() => item.style.transition = "", 1)}, number);
-});
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .fadeIn(options)
@@ -787,11 +775,7 @@ elm.style.transition = `opacity 1000ms`;
 elm.style.opacity = "0";
 setTimeout(() => {elm.style.display = "none"; setTimeout(() => elm.style.transition = "", 1)}, 1000);
 
-elmList.forEach(item => {
-    item.style.transition = `opacity 1000ms`;
-    item.style.opacity = "0";
-    setTimeout(() => {item.style.display = "none"; setTimeout(() => item.style.transition = "", 1)}, 1000);
-});
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .fadeOut(options)
@@ -931,13 +915,13 @@ $jqList.height(number);
 
 elm.style.height = `${number}px`;
 
-elmList.forEach(item => item.style.height = `${number}px`);
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .height(function)
 $jqList.height((idx, height) => idx * 5 + height);
 
-elmList.forEach((item, idx) => item.style.height = (idx * 5 + height) + 'px');
+elmList.forEach((elm, idx) => elm.style.height = (idx * 5 + height) + 'px');
 
 
 // =============================================================================
@@ -965,7 +949,7 @@ $jqList.html(markupString);
 
 elm.innerHTML = markupString;
 
-elmList.forEach(item => item.innerHTML = markupString);
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .html(function)
@@ -1083,7 +1067,7 @@ $jqList.live(eventName, func);
 
 elm.addEventListener(eventName, func);
 
-elmList.forEach(item => item.addEventListener(eventName, func));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .live(events, [data], handler)
@@ -1180,7 +1164,7 @@ $jqList.off(eventName, func);
 
 elm.removeEventListener(eventName, func);
 
-elmList.forEach(item => item.removeEventListener(eventName, func));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .off(events, [selector])
@@ -1200,7 +1184,7 @@ $jqList.off();
 
 elm.parentNode.replaceChild(elm.cloneNode(true), elm);
 
-elmList.forEach(item => item.parentNode.replaceChild(item.cloneNode(true), item));
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1235,7 +1219,7 @@ $jqList.on(eventName, func);
 
 elm.addEventListener(eventName, func);
 
-elmList.forEach(item => item.addEventListener(eventName, func));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .on(events, [selector], [data])
@@ -1462,7 +1446,7 @@ $jqList.remove();
 
 elm.parentNode.removeChild(elm);
 
-elmList.forEach(item => item.parentNode.removeChild(item));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .remove([selector])
@@ -1470,7 +1454,7 @@ $jqList.remove(selector);
 
 elm.match(selector) && elm.parentNode.removeChild(elm);
 
-elmList.forEach(item => item.match(selector) && item.parentNode.removeChild(item));
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1479,7 +1463,7 @@ $jqList.removeAttr(attrName);
 
 elm.removeAttribute(attrName);
 
-elmList.forEach(item => item.removeAttribute(attrName));
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1488,7 +1472,7 @@ $jqList.removeClass();
 
 elm.className = "";
 
-elmList.forEach(item => item.className = "");
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .removeClass([className])
@@ -1496,13 +1480,13 @@ $jqList.removeClass(className);
 
 elm.classList.remove(className);
 
-elmList.forEach(item => item.classList.remove(className));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .removeClass(function)
 $jqList.removeClass((idx, className) => (idx % 2) ? "odd" : "even");
 
-elmList.forEach((item, idx) => item.classList.remove((idx % 2) ? "odd" : "even"));
+elmList.forEach((elm, idx) => elm.classList.remove((idx % 2) ? "odd" : "even"));
 
 
 // =============================================================================
@@ -1538,7 +1522,7 @@ $jqList.replaceWith(markupString);
 
 elm.replaceWith(markupString);
 
-elmList.forEach(item => item.replaceWith(markupString));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .replaceWith(function)
@@ -1631,11 +1615,7 @@ Array.prototype.slice.call(elmList, start, end);
     elm.style.height = "200px";
     setTimeout(() => elm.style.transition = "", 1000);
 
-    elmList.forEach(item => {
-        elm.style.transition = `height 1000ms`;
-        elm.style.height = "200px";
-        setTimeout(() => elm.style.transition = "", 1000);
-    });
+    elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .slideDown([duration], [complete])
@@ -1645,11 +1625,7 @@ Array.prototype.slice.call(elmList, start, end);
     elm.style.height = "200px";
     setTimeout(() => elm.style.transition = "", number);
 
-    elmList.forEach(item => {
-        elm.style.transition = `height ${number}ms`;
-        elm.style.height = "200px";
-        setTimeout(() => elm.style.transition = "", number);
-    });
+    elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .slideDown(options)
@@ -1672,11 +1648,7 @@ elm.style.transition = `height 1000ms`;
 elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
 setTimeout(() => elm.style.transition = "", 1000);
 
-elmList.forEach(item => {
-    elm.style.transition = `height 1000ms`;
-    elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
-    setTimeout(() => elm.style.transition = "", 1000);
-});
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .slideToggle([duration], [complete])
@@ -1686,11 +1658,7 @@ elm.style.transition = `height ${number}ms`;
 elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
 setTimeout(() => elm.style.transition = "", number);
 
-elmList.forEach(item => {
-    elm.style.transition = `height ${number}ms`;
-    elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
-    setTimeout(() => elm.style.transition = "", number);
-});
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .slideToggle(options)
@@ -1732,13 +1700,13 @@ $jqList.text(nonMarkupString);
 
 elm.textContent = nonMarkupString;
 
-elmList.forEach(item => item.textContent = nonMarkupString);
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .text(function)
 $jqList.text((idx, text) => `line ${idx} has ${text.length} chars.`);
 
-elmList.forEach((item, idx) => item.textContent = `line ${idx} has ${item.textContent.length} chars.`);
+elmList.forEach((elm, idx) => elm.textContent = `line ${idx} has ${elm.textContent.length} chars.`);
 
 
 // =============================================================================
@@ -1754,7 +1722,7 @@ $jqList.toggle();
 
 elm.style.display = (elm.style.display == "none") ? "block" : "none";
 
-elmList.forEach(item => elm.style.display = (elm.style.display == "none") ? "block" : "none");
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .toggle([duration], [complete])
@@ -1765,12 +1733,7 @@ elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
 elm.style.width = (elm.style.width == "0px") ? "200px" : "0px";
 setTimeout(() => elm.style.transition = "", number);
 
-elmList.forEach(item => {
-    item.style.transition = `height ${number}ms, width ${number}ms`;
-    item.style.height = (item.style.height == "0px") ? "200px" : "0px";
-    item.style.width = (item.style.width == "0px") ? "200px" : "0px";
-    setTimeout(() => item.style.transition = "", number);
-});
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .toggle(options)
@@ -1804,7 +1767,7 @@ $jqList.toggleClass(className);
 
 elm.classList.toggle(className);
 
-elmList.forEach(item => item.classList.toggle(className));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .toggleClass(className, state)
@@ -1812,7 +1775,7 @@ $jqList.toggleClass();
 
 state ? elm.classList.add(className) : elm.classList.remove(className);
 
-elmList.forEach(item => state ? item.classList.add(className) : item.classList.remove(className));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .toggleClass(function, [state])
@@ -1833,7 +1796,7 @@ $jqList.trigger(eventType);
 
 elm.dispatchEvent(new Event(eventType));
 
-elmList.forEach(item => item.dispatchEvent(new Event(eventType)));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .trigger(eventType, [extraParameters])
@@ -1841,7 +1804,7 @@ $jqList.trigger(eventType, {key1: 'data1', key2: 'data2'});
 
 elm.dispatchEvent(new CustomEvent(eventType), {detail: {key1: 'data1', key2: 'data2'});
 
-elmList.forEach(item => item.dispatchEvent(new CustomEvent(eventType), {detail: {key1: 'data1', key2: 'data2'}));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .trigger(event, [extraParameters])
@@ -1869,7 +1832,7 @@ $jqList.unbind(eventName, func);
 
 elm.removeEventListener(eventName, func);
 
-elmList.forEach(item => item.removeEventListener(eventName, func));
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .unbind(eventType, false)
@@ -1889,7 +1852,7 @@ $jqList.unbind();
 
 elm.parentNode.replaceChild(elm.cloneNode(true), elm);
 
-elmList.forEach(item => item.parentNode.replaceChild(item.cloneNode(true), item));
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1930,10 +1893,7 @@ $jqList.unwrap();
 const parent = elm.parentNode;
 (parent != document.body) && parent.parentNode.insertBefore(elm, parent).parentNode.removeChild(parent);
 
-elmList.forEach(item => {
-    const parent = item.parentNode;
-    (parent != document.body) && parent.parentNode.insertBefore(item, parent).parentNode.removeChild(parent);
-});
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .unwrap([selector])
@@ -1949,15 +1909,7 @@ while (!parent.matches(selector) && parent != document.body) {
 (parent != document.body) && parent.parentNode.insertBefore(current, parent).parentNode.removeChild(parent);
 
 
-elmList.forEach(item => {
-    let current = item;
-    let parent = item.parentNode;
-    while (!parent.matches(selector) && parent != document.body) {
-        current = parent;
-        parent = parent.parentNode;
-    }
-    (parent != document.body) && parent.parentNode.insertBefore(current, parent).parentNode.removeChild(parent);
-});
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1974,13 +1926,13 @@ $jqList.val(nonMarkupString);
 
 elm.value = nonMarkupString;
 
-elmList.forEach(item => item.value = nonMarkupString);
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .val(function)
 $jqList.val((idx, val) => `input ${idx} has ${val.length} chars.);
 
-elmList.forEach((item, idx) => item.value = `input ${idx} has ${item.value.length} chars.`);
+elmList.forEach((elm, idx) => elm.value = `input ${idx} has ${elm.value.length} chars.`);
 
 
 // =============================================================================
@@ -1997,13 +1949,13 @@ $jqList.width(number);
 
 elm.style.width = `${number}px`;
 
-elmList.forEach(item => item.style.width = `${number}px`);
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .width(function)
 $jqList.width((idx, width) => idx * 5 + width);
 
-elmList.forEach((item, idx) => item.style.width = (idx * 5 + width) + 'px');
+elmList.forEach((elm, idx) => elm.style.width = (idx * 5 + width) + 'px');
 
 
 // =============================================================================
@@ -2011,13 +1963,18 @@ elmList.forEach((item, idx) => item.style.width = (idx * 5 + width) + 'px');
 $jqList.wrap(markupString);
 
 newElm = (new Range).createContextualFragment(markupString).firstElementChild
-elmList.forEach(item => item.parentNode.insertBefore(newElm.cloneNode(true), item).appendChild(item));
+elm.parentNode.insertBefore(newElm, elm).appendChild(elm);
+
+newElm = (new Range).createContextualFragment(markupString).firstElementChild
+elmList.forEach(elm => elm.parentNode.insertBefore(newElm.cloneNode(true), elm).appendChild(elm));
 
 // ---------------------------------
 // SIGNATURE: .wrap(wrappingElement)
 $jqList.wrap(otherElm);
 
-elmList.forEach(item => item.parentNode.insertBefore(otherElm.cloneNode(true), item).appendChild(item));
+elm.parentNode.insertBefore(otherElm.cloneNode(true), elm).appendChild(elm);
+
+elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .wrap(function)
