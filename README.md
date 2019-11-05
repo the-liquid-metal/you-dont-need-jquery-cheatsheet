@@ -1621,44 +1621,47 @@ Array.prototype.slice.call(elmList, start, end);
 
 
 // =============================================================================
-// SIGNATURE: .slideDown([duration], [complete])
-$jqList.slideDown();
+// SIMILAR METHOD: #slideDown(), #slideUp()
 
-elm.style.transition = `height 1000ms`;
-elm.style.height = "200px";
-setTimeout(() => elm.style.transition = "", 1000);
+    // ---------------------------------
+    // SIGNATURE: .slideDown([duration], [complete])
+    $jqList.slideDown();
 
-elmList.forEach(item => {
     elm.style.transition = `height 1000ms`;
     elm.style.height = "200px";
     setTimeout(() => elm.style.transition = "", 1000);
-});
 
-// ---------------------------------
-// SIGNATURE: .slideDown([duration], [complete])
-$jqList.slideDown(number);
+    elmList.forEach(item => {
+        elm.style.transition = `height 1000ms`;
+        elm.style.height = "200px";
+        setTimeout(() => elm.style.transition = "", 1000);
+    });
 
-elm.style.transition = `height ${number}ms`;
-elm.style.height = "200px";
-setTimeout(() => elm.style.transition = "", number);
+    // ---------------------------------
+    // SIGNATURE: .slideDown([duration], [complete])
+    $jqList.slideDown(number);
 
-elmList.forEach(item => {
     elm.style.transition = `height ${number}ms`;
     elm.style.height = "200px";
     setTimeout(() => elm.style.transition = "", number);
-});
 
-// ---------------------------------
-// SIGNATURE: .slideDown(options)
-$jqList.slideDown();
+    elmList.forEach(item => {
+        elm.style.transition = `height ${number}ms`;
+        elm.style.height = "200px";
+        setTimeout(() => elm.style.transition = "", number);
+    });
 
-// TODO
+    // ---------------------------------
+    // SIGNATURE: .slideDown(options)
+    $jqList.slideDown();
 
-// ---------------------------------
-// SIGNATURE: .slideDown([duration], [easing], [complete])
-$jqList.slideDown();
+    // TODO
 
-// TODO
+    // ---------------------------------
+    // SIGNATURE: .slideDown([duration], [easing], [complete])
+    $jqList.slideDown();
+
+    // TODO
 
 
 // =============================================================================
@@ -1698,47 +1701,6 @@ $jqList.slideToggle();
 // ---------------------------------
 // SIGNATURE: .slideToggle([duration], [easing], [complete])
 $jqList.slideToggle();
-
-// TODO
-
-
-// =============================================================================
-// SIGNATURE: .slideUp([duration], [complete])
-$jqList.slideUp();
-
-elm.style.transition = `height 1000ms`;
-elm.style.height = "0px";
-setTimeout(() => elm.style.transition = "", 1000);
-
-elmList.forEach(item => {
-    elm.style.transition = `height 1000ms`;
-    elm.style.height = "0px";
-    setTimeout(() => elm.style.transition = "", 1000);
-});
-
-// ---------------------------------
-// SIGNATURE: .slideUp([duration], [complete])
-$jqList.slideUp(number);
-
-elm.style.transition = `height ${number}ms`;
-elm.style.height = "0px";
-setTimeout(() => elm.style.transition = "", number);
-
-elmList.forEach(item => {
-    elm.style.transition = `height ${number}ms`;
-    elm.style.height = "0px";
-    setTimeout(() => elm.style.transition = "", number);
-});
-
-// ---------------------------------
-// SIGNATURE: .slideUp(options)
-$jqList.slideUp();
-
-// TODO
-
-// ---------------------------------
-// SIGNATURE: .slideUp([duration], [easing], [complete])
-$jqList.slideUp();
 
 // TODO
 
