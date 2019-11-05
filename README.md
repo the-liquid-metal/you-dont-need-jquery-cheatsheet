@@ -3,12 +3,12 @@
 **Why another "You don't need jQuery" article?**
 * They are too verbose: use of wasteful pharenthesis, new line, semicolon, etc;
   create less concise variable; or even function. Presence of function means they
-  don't realize they replace jQuery with "theirOwnQuery" :yum:. They don't realize
-  jQuery is so elegance that they fail to replace it.
+  don't realize they replace jQuery with "theirOwnQuery" :thumbsdown:. They don't
+  realize jQuery is so elegance that they fail to replace it.
 * The solution is out of context. jQuery solves problems only by javascript. If
   any solution force you to write CSS (or anykind except javascript), it means it
   fails to replace jQuery.
-* They still mention IE :disappointed:. Ask your users to throw away IE and use
+* They still mention IE :thumbsdown:. Ask your users to throw away IE and use
   newest open source browser, you will be free from pain.
 
 **Credit:**
@@ -1280,6 +1280,28 @@ elm.prepend((new Range).createContextualFragment(markupString).firstElementChild
 
 newElm = (new Range).createContextualFragment(markupString).firstElementChild;
 elmList.forEach(item => item.prepend(newElm.cloneNode(true)));
+
+// ---------------------------------
+// SIGNATURE: .prepend(content, [content])
+$jqList.prepend(otherElm1, otherElm2, otherElm3 /* and any another params */);
+
+[otherElm1, otherElm2, otherElm3 /* and any another params */].forEach(item => elm.prepend(item));
+
+[otherElm1, otherElm2, otherElm3 /* and any another params */]
+    .forEach(item1 => elmList.forEach(item2 => item2.prepend(item1.cloneNode(true))))
+    .forEach(item => item.remove());
+
+// ---------------------------------
+// SIGNATURE: .prepend(content, [content])
+$jqList.prepend(markupString1, markupString2, markupString3 /* and any another params */);
+
+[markupString1, markupString2, markupString3 /* and any another params */]
+    .map(item => (new Range).createContextualFragment(item).firstElementChild)
+    .forEach(item => elm.prepend(item));
+
+[markupString1, markupString2, markupString3 /* and any another params */]
+    .map(item => (new Range).createContextualFragment(item).firstElementChild)
+    .forEach(item1 => elmList.forEach(item2 => item2.prepend(item1.cloneNode(true))));
 
 // ---------------------------------
 // SIGNATURE: .prepend(function)
