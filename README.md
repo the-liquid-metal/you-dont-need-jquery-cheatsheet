@@ -192,7 +192,16 @@ let func = function(){};
 
     // ---------------------------------
     // SIGNATURE: .blur([eventData], handler)
-    $jqList.blur();
+    $jqList.blur({data1: "val1", data2: "val2"}, (event) => {
+        console.log(event.data.data1, event.data.data2);
+    });
+
+    elm.addEventListener("blur", (event) => {
+        const evenData = {data1: "val1", data2: "val2"};
+        console.log(evenData.data1, evenData.data2);
+    });
+
+    elmList.forEach(elm => {/* same as above */});
 
     // TODO
 
@@ -210,7 +219,7 @@ let func = function(){};
 
     // ---------------------------------
     // SIGNATURE: .error(handler)
-    $jqList.error();
+    $jqList.error(func);
 
     elm.addEventListener("error", func);
 
@@ -218,9 +227,16 @@ let func = function(){};
 
     // ---------------------------------
     // SIGNATURE: .error([eventData], handler)
-    $jqList.error();
+    $jqList.error({data1: "val1", data2: "val2"}, (event) => {
+        console.log(event.data.data1, event.data.data2);
+    });
 
-    // TODO
+    elm.addEventListener("error", (event) => {
+        const evenData = {data1: "val1", data2: "val2"};
+        console.log(evenData.data1, evenData.data2);
+    });
+
+    elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
