@@ -1761,6 +1761,7 @@ $jqList.toggle(options);
 elm.style.transition = `all ${options.duration}ms ${options.easing}`;
 elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
 elm.style.width = (elm.style.width == "0px") ? "200px" : "0px";
+elm.style.opacity = (elm.style.opacity == "0") ? "1" : "0";
 setTimeout(() => {elm.style.transition = ""; options.complete()}, options.duration);
 
 elmList.forEach(elm => {/* same as above */});
@@ -1772,6 +1773,7 @@ $jqList.toggle(duration, easing, complete);
 elm.style.transition = `all ${duration}ms ${easing}`;
 elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
 elm.style.width = (elm.style.width == "0px") ? "200px" : "0px";
+elm.style.opacity = (elm.style.opacity == "0") ? "1" : "0";
 setTimeout(() => {elm.style.transition = ""; complete()}, duration);
 
 elmList.forEach(elm => {/* same as above */});
