@@ -931,9 +931,9 @@ $jqList.hasClass();
 // SIGNATURE: .height()
 $jqList.height();
 
-parseFloat(getComputedStyle(elm).height)
+parseFloat(getComputedStyle(elm).height);
 
-parseFloat(getComputedStyle(elmList[0]).height)
+parseFloat(getComputedStyle(elmList[0]).height);
 
 // ---------------------------------
 // SIGNATURE: .height(value)
@@ -1431,7 +1431,7 @@ $jqList.prop();
 // SIGNATURE: .pushStack(elements)
 $jqList.pushStack($otherJqList);
 
-[..elmList, ..otherElmList];
+[...elmList, ...otherElmList];
 
 // ---------------------------------
 // SIGNATURE: .pushStack(elements, name, arguments)
@@ -1614,7 +1614,7 @@ $jqList.siblings(selector);
 // SIGNATURE: .size()
 $jqList.size();
 
-elmList.length
+elmList.length;
 
 
 // =============================================================================
@@ -1739,7 +1739,7 @@ elmList.forEach((elm, idx) => elm.textContent = `line ${idx} has ${elm.textConte
 // SIGNATURE: .toArray()
 $jqList.toArray();
 
-[...elmList]
+[...elmList];
 
 
 // =============================================================================
@@ -1833,7 +1833,7 @@ elmList.forEach(elm => {/* same as above */});
 // SIGNATURE: .trigger(eventType, [extraParameters])
 $jqList.trigger(eventType, {key1: 'data1', key2: 'data2'});
 
-elm.dispatchEvent(new CustomEvent(eventType), {detail: {key1: 'data1', key2: 'data2'});
+elm.dispatchEvent(new CustomEvent(eventType), {detail: {key1: 'data1', key2: 'data2'}});
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -1921,7 +1921,7 @@ $jqList.undelegate();
 // SIGNATURE: .unwrap()
 $jqList.unwrap();
 
-const parent = elm.parentNode;
+parent = elm.parentNode;
 (parent != document.body) && parent.parentNode.insertBefore(elm, parent).parentNode.removeChild(parent);
 
 elmList.forEach(elm => {/* same as above */});
@@ -1931,8 +1931,8 @@ elmList.forEach(elm => {/* same as above */});
 $jqList.unwrap(selector);
 
 
-let current = elm;
-let parent = elm.parentNode;
+current = elm;
+parent = elm.parentNode;
 while (!parent.matches(selector) && parent != document.body) {
     current = parent;
     parent = parent.parentNode;
@@ -1961,7 +1961,7 @@ elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .val(function)
-$jqList.val((idx, val) => `input ${idx} has ${val.length} chars.);
+$jqList.val((idx, val) => `input ${idx} has ${val.length} chars.`);
 
 elmList.forEach((elm, idx) => elm.value = `input ${idx} has ${elm.value.length} chars.`);
 
@@ -1970,9 +1970,9 @@ elmList.forEach((elm, idx) => elm.value = `input ${idx} has ${elm.value.length} 
 // SIGNATURE: .width()
 $jqList.width();
 
-parseFloat(getComputedStyle(elm).width)
+parseFloat(getComputedStyle(elm).width);
 
-parseFloat(getComputedStyle(elmList[0]).width)
+parseFloat(getComputedStyle(elmList[0]).width);
 
 // ---------------------------------
 // SIGNATURE: .width(value)
@@ -1993,10 +1993,10 @@ elmList.forEach((elm, idx) => elm.style.width = (idx * 5 + width) + 'px');
 // SIGNATURE: .wrap(wrappingElement)
 $jqList.wrap(markupString);
 
-newElm = (new Range).createContextualFragment(markupString).firstElementChild
+newElm = (new Range).createContextualFragment(markupString).firstElementChild;
 elm.parentNode.insertBefore(newElm, elm).appendChild(elm);
 
-newElm = (new Range).createContextualFragment(markupString).firstElementChild
+newElm = (new Range).createContextualFragment(markupString).firstElementChild;
 elmList.forEach(elm => elm.parentNode.insertBefore(newElm.cloneNode(true), elm).appendChild(elm));
 
 // ---------------------------------
