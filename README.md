@@ -304,7 +304,7 @@ elmList.forEach(item => item.classList.add("new-class"));
 
 // ---------------------------------
 // SIGNATURE: .addClass(function)
-$jqList.addClass();
+$jqList.addClass(func);
 
 // TODO
 
@@ -319,7 +319,7 @@ elmList.forEach(item => item.insertAdjacentHTML("afterend", markupString));
 
 // ---------------------------------
 // SIGNATURE: .after(function)
-$jqList.after();
+$jqList.after(func);
 
 // TODO
 
@@ -406,7 +406,7 @@ elm.append(otherElm || nonMarkupString);
 
 // ---------------------------------
 // SIGNATURE: .append(function)
-$jqList.append();
+$jqList.append(func);
 
 // TODO
 
@@ -457,7 +457,7 @@ elmList.forEach(item => item.insertAdjacentHTML("beforebegin", markupString));
 
 // ---------------------------------
 // SIGNATURE: .before(function)
-$jqList.before();
+$jqList.before(func);
 
 // TODO
 
@@ -671,7 +671,7 @@ $jqList.die();
 
 // =============================================================================
 // SIGNATURE: .each(function)
-$jqList.each();
+$jqList.each(func);
 
 // TODO
 
@@ -791,7 +791,7 @@ $jqList.filter();
 
 // ---------------------------------
 // SIGNATURE: .filter(function)
-$jqList.filter();
+$jqList.filter(func);
 
 // TODO
 
@@ -872,19 +872,23 @@ $jqList.hasClass();
 // SIGNATURE: .height()
 $jqList.height();
 
-// TODO
+parseFloat(getComputedStyle(elm).height)
+
+parseFloat(getComputedStyle(elmList[0]).height)
 
 // ---------------------------------
 // SIGNATURE: .height(value)
-$jqList.height();
+$jqList.height(number);
 
-// TODO
+elm.style.height = `${number}px`;
+
+elmList.forEach(item => item.style.height = `${number}px`);
 
 // ---------------------------------
 // SIGNATURE: .height(function)
-$jqList.height();
+$jqList.height((idx, height) => idx * 5 + height);
 
-// TODO
+elmList.forEach((item, idx) => item.style.height = (idx * 5 + height) + 'px');
 
 
 // =============================================================================
@@ -916,7 +920,7 @@ elmList.forEach(item => item.innerHTML = markupString);
 
 // ---------------------------------
 // SIGNATURE: .html(function)
-$jqList.html();
+$jqList.html(func);
 
 // TODO
 
@@ -954,7 +958,7 @@ $jqList.innerHeight();
 
 // ---------------------------------
 // SIGNATURE: .innerHeight(function)
-$jqList.innerHeight();
+$jqList.innerHeight(func);
 
 // TODO
 
@@ -973,7 +977,7 @@ $jqList.innerWidth();
 
 // ---------------------------------
 // SIGNATURE: .innerWidth(function)
-$jqList.innerWidth();
+$jqList.innerWidth(func);
 
 // TODO
 
@@ -1000,7 +1004,7 @@ $jqList.is();
 
 // ---------------------------------
 // SIGNATURE: .is(function)
-$jqList.is();
+$jqList.is(func);
 
 // TODO
 
@@ -1110,7 +1114,7 @@ $jqList.not();
 
 // ---------------------------------
 // SIGNATURE: .not(function)
-$jqList.not();
+$jqList.not(func);
 
 // TODO
 
@@ -1164,7 +1168,7 @@ $jqList.offset();
 
 // ---------------------------------
 // SIGNATURE: .offset(function)
-$jqList.offset();
+$jqList.offset(func);
 
 // TODO
 
@@ -1224,7 +1228,7 @@ $jqList.outerHeight();
 
 // ---------------------------------
 // SIGNATURE: .outerHeight(function)
-$jqList.outerHeight();
+$jqList.outerHeight(func);
 
 // TODO
 
@@ -1243,7 +1247,7 @@ $jqList.outerWidth();
 
 // ---------------------------------
 // SIGNATURE: .outerWidth(function)
-$jqList.outerWidth();
+$jqList.outerWidth(func);
 
 // TODO
 
@@ -1326,7 +1330,7 @@ $jqList.prepend(markupString1, markupString2, markupString3 /* and any another p
 
 // ---------------------------------
 // SIGNATURE: .prepend(function)
-$jqList.prepend();
+$jqList.prepend(func);
 
 // TODO
 
@@ -1496,7 +1500,7 @@ elmList.forEach(item => item.classList.remove(className));
 
 // ---------------------------------
 // SIGNATURE: .removeClass(function)
-$jqList.removeClass(className);
+$jqList.removeClass(func);
 
 // TODO
 
@@ -1538,7 +1542,7 @@ elmList.forEach(item => item.replaceWith(markupString));
 
 // ---------------------------------
 // SIGNATURE: .replaceWith(function)
-$jqList.replaceWith();
+$jqList.replaceWith(func);
 
 // TODO
 
@@ -1770,9 +1774,9 @@ elmList.forEach(item => item.textContent = nonMarkupString);
 
 // ---------------------------------
 // SIGNATURE: .text(function)
-$jqList.text();
+$jqList.text((idx, text) => `line ${idx} has ${text.length} chars.`);
 
-// TODO
+elmList.forEach((item, idx) => item.textContent = `line ${idx} has ${item.textContent.length} chars.`);
 
 
 // =============================================================================
@@ -1991,9 +1995,9 @@ elmList.forEach(item => item.value = nonMarkupString);
 
 // ---------------------------------
 // SIGNATURE: .val(function)
-$jqList.val();
+$jqList.val((idx, val) => `input ${idx} has ${val.length} chars.);
 
-// TODO
+elmList.forEach((item, idx) => item.value = `input ${idx} has ${item.value.length} chars.`);
 
 
 // =============================================================================
@@ -2008,15 +2012,15 @@ parseFloat(getComputedStyle(elmList[0]).width)
 // SIGNATURE: .width(value)
 $jqList.width(number);
 
-elm.style.height = `${number}px`;
+elm.style.width = `${number}px`;
 
-elmList.forEach(item => item.style.height = `${number}px`);
+elmList.forEach(item => item.style.width = `${number}px`);
 
 // ---------------------------------
 // SIGNATURE: .width(function)
-$jqList.width();
+$jqList.width((idx, width) => idx * 5 + width);
 
-// TODO
+elmList.forEach((item, idx) => item.style.width = (idx * 5 + width) + 'px');
 
 
 // =============================================================================
@@ -2034,7 +2038,7 @@ elmList.forEach(item => item.parentNode.insertBefore(otherElm.cloneNode(true), i
 
 // ---------------------------------
 // SIGNATURE: .wrap(function)
-$jqList.wrap();
+$jqList.wrap(func);
 
 // TODO
 
@@ -2047,7 +2051,7 @@ $jqList.wrapAll();
 
 // ---------------------------------
 // SIGNATURE: .wrapAll(function)
-$jqList.wrapAll();
+$jqList.wrapAll(func);
 
 // TODO
 
@@ -2060,7 +2064,7 @@ $jqList.wrapInner();
 
 // ---------------------------------
 // SIGNATURE: .wrapInner(function)
-$jqList.wrapInner();
+$jqList.wrapInner(func);
 
 // TODO
 
