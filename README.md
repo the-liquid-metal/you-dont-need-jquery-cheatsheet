@@ -771,26 +771,45 @@ $jqList.eq();
 
 
 // =============================================================================
-// SIGNATURE: .fadeIn([duration], [complete])
-$jqList.fadeIn();
+// SIMILAR METHOD: #fadeIn(), #fadeOut()
 
-elm.style.transition = `opacity ${number}ms`;
-elm.style.display = "block";
-setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, number);
+    // ---------------------------------
+    // SIGNATURE: .fadeIn([duration], [complete])
+    $jqList.fadeIn();
 
-elmList.forEach(elm => {/* same as above */});
+    elm.style.transition = `opacity ${number}ms`;
+    elm.style.display = "block";
+    setTimeout(() => {elm.style.opacity = "1"; setTimeout(() => elm.style.transition = "", 1)}, number);
 
-// ---------------------------------
-// SIGNATURE: .fadeIn(options)
-$jqList.fadeIn();
+    elmList.forEach(elm => {/* same as above */});
 
-// TODO
+    // ---------------------------------
+    // SIGNATURE: .fadeIn(options)
+    $jqList.fadeIn(options);
 
-// ---------------------------------
-// SIGNATURE: .fadeIn([duration], [easing], [complete])
-$jqList.fadeIn();
+    elm.style.transition = `opacity ${options.duration}ms ${options.easing}`;
+    elm.style.display = "block";
+    setTimeout(() => {
+        elm.style.opacity = "1";
+        options.complete();
+        setTimeout(() => elm.style.transition = "", 1)
+    }, options.duration);
 
-// TODO
+    elmList.forEach(elm => {/* same as above */});
+
+    // ---------------------------------
+    // SIGNATURE: .fadeIn([duration], [easing], [complete])
+    $jqList.fadeIn(duration, easing, complete);
+
+    elm.style.transition = `opacity ${duration}ms ${easing}`;
+    elm.style.display = "block";
+    setTimeout(() => {
+        elm.style.opacity = "1";
+        complete();
+        setTimeout(() => elm.style.transition = "", 1)
+    }, duration);
+
+    elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
