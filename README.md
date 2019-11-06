@@ -197,7 +197,7 @@ let func = function(){};
     });
 
     elm.addEventListener("blur", (event) => {
-        const evenData = {data1: "val1", data2: "val2"};
+        evenData = {data1: "val1", data2: "val2"};
         console.log(evenData.data1, evenData.data2);
     });
 
@@ -232,7 +232,7 @@ let func = function(){};
     });
 
     elm.addEventListener("error", (event) => {
-        const evenData = {data1: "val1", data2: "val2"};
+        evenData = {data1: "val1", data2: "val2"};
         console.log(evenData.data1, evenData.data2);
     });
 
@@ -451,23 +451,23 @@ elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .append(content, [content])
-    $jqList.append(otherElm1, otherElm2, otherElm3 /* and any another params */);
+    $jqList.append(otherElm1, otherElm2 /* and any another params */);
 
-    [otherElm1, otherElm2, otherElm3 /* and any another params */].forEach(item => elm.append(item));
+    [otherElm1, otherElm2 /* and any another params */].forEach(item => elm.append(item));
 
-    [otherElm1, otherElm2, otherElm3 /* and any another params */]
+    [otherElm1, otherElm2 /* and any another params */]
         .forEach(item1 => elmList.forEach(item2 => item2.append(item1.cloneNode(true))))
         .forEach(item => item.remove());
 
     // ---------------------------------
     // SIGNATURE: .append(content, [content])
-    $jqList.append(markupString1, markupString2, markupString3 /* and any another params */);
+    $jqList.append(markupString1, markupString2 /* and any another params */);
 
-    [markupString1, markupString2, markupString3 /* and any another params */]
+    [markupString1, markupString2 /* and any another params */]
         .map(item => (new Range).createContextualFragment(item).firstElementChild)
         .forEach(item => elm.append(item));
 
-    [markupString1, markupString2, markupString3 /* and any another params */]
+    [markupString1, markupString2 /* and any another params */]
         .map(item => (new Range).createContextualFragment(item).firstElementChild)
         .forEach(item1 => elmList.forEach(item2 => item2.append(item1.cloneNode(true))));
 
@@ -1146,16 +1146,16 @@ $jqList.nextAll();
 // SIGNATURE: .nextUntil([selector], [filter])
 $jqList.nextUntil(selector);
 
-const children = elm.parentNode.children;
-const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector) ? idx : acc, NaN);
+children = elm.parentNode.children;
+boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector) ? idx : acc, NaN);
 [...children].filter((item, idx, self) => idx > self.indexOf(elm) && boundary > self.indexOf(item));
 
 // ---------------------------------
 // SIGNATURE: .nextUntil([selector], [filter])
 $jqList.nextUntil(selector1, selector2);
 
-const children = elm.parentNode.children;
-const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector1) ? idx : acc, NaN);
+children = elm.parentNode.children;
+boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector1) ? idx : acc, NaN);
 [...children].filter((item, idx, self) => idx > self.indexOf(elm) && boundary > self.indexOf(item) && item.matches(selector2));
 
 // ---------------------------------
@@ -1376,16 +1376,16 @@ $jqList.prevAll();
 // SIGNATURE: .prevUntil([selector], [filter])
 $jqList.prevUntil(selector);
 
-const children = elm.parentNode.children;
-const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector) ? idx : acc, NaN);
+children = elm.parentNode.children;
+boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector) ? idx : acc, NaN);
 [...children].filter((item, idx, self) => idx < self.indexOf(elm) && boundary < self.indexOf(item));
 
 // ---------------------------------
 // SIGNATURE: .prevUntil([selector], [filter])
 $jqList.prevUntil(selector1, selector2);
 
-const children = elm.parentNode.children;
-const boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector1) ? idx : acc, NaN);
+children = elm.parentNode.children;
+boundary = Array.prototype.reduce.call(children, (acc, item, idx) => item.matches(selector1) ? idx : acc, NaN);
 [...children].filter((item, idx, self) => idx < self.indexOf(elm) && boundary < self.indexOf(item) && item.matches(selector2));
 
 // ---------------------------------
@@ -1463,7 +1463,7 @@ $jqList.queue();
 // SIGNATURE: .ready(handler)
 $jqList.ready(func);
 
-(document.readyState !== "loading") ? func() : document.addEventListener("DOMContentLoaded", func);
+(document.readyState == "loading") ? document.addEventListener("DOMContentLoaded", func) : func();
 
 
 // =============================================================================
@@ -1478,7 +1478,7 @@ elmList.forEach(elm => {/* same as above */});
 // SIGNATURE: .remove([selector])
 $jqList.remove(selector);
 
-elm.match(selector) && elm.parentNode.removeChild(elm);
+elm.matches(selector) && elm.parentNode.removeChild(elm);
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -1607,7 +1607,7 @@ $jqList.siblings();
 // SIGNATURE: .siblings([selector])
 $jqList.siblings(selector);
 
-[...elm.parentNode.children].filter(item => item !== elm && item.match(selector));
+[...elm.parentNode.children].filter(item => item !== elm && item.matches(selector));
 
 
 // =============================================================================
@@ -1645,25 +1645,27 @@ Array.prototype.slice.call(elmList, start, end);
 
     // ---------------------------------
     // SIGNATURE: .slideDown([duration], [complete])
-    $jqList.slideDown(number);
+    // see: .slideDown([duration], [easing], [complete])
 
-    elm.style.transition = `height ${number}ms`;
+    // ---------------------------------
+    // SIGNATURE: .slideDown(options)
+    $jqList.slideDown(options);
+
+    elm.style.transition = `height ${options.duration}ms ${options.easing}`;
     elm.style.height = "200px";
-    setTimeout(() => elm.style.transition = "", number);
+    setTimeout(() => {elm.style.transition = ""; options.complete()}, options.duration);
 
     elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
-    // SIGNATURE: .slideDown(options)
-    $jqList.slideDown();
-
-    // TODO
-
-    // ---------------------------------
     // SIGNATURE: .slideDown([duration], [easing], [complete])
-    $jqList.slideDown();
+    $jqList.slideDown(duration, easing, complete);
 
-    // TODO
+    elm.style.transition = `height ${duration}ms ${easing}`;
+    elm.style.height = "200px";
+    setTimeout(() => {elm.style.transition = ""; complete()}, duration);
+
+    elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1678,25 +1680,27 @@ elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .slideToggle([duration], [complete])
-$jqList.slideToggle(number);
+// see: .slideToggle([duration], [easing], [complete])
 
-elm.style.transition = `height ${number}ms`;
+// ---------------------------------
+// SIGNATURE: .slideToggle(options)
+$jqList.slideToggle(options);
+
+elm.style.transition = `height ${options.duration}ms ${options.easing}`;
 elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
-setTimeout(() => elm.style.transition = "", number);
+setTimeout(() => {elm.style.transition = ""; options.complete()}, options.duration);
 
 elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
-// SIGNATURE: .slideToggle(options)
-$jqList.slideToggle();
-
-// TODO
-
-// ---------------------------------
 // SIGNATURE: .slideToggle([duration], [easing], [complete])
-$jqList.slideToggle();
+$jqList.slideToggle(duration, easing, complete);
 
-// TODO
+elm.style.transition = `height ${duration}ms ${easing}`;
+elm.style.height = (elm.style.height == "0px") ? "200px" : "0px";
+setTimeout(() => {elm.style.transition = ""; complete()}, duration);
+
+elmList.forEach(elm => {/* same as above */});
 
 
 // =============================================================================
@@ -1804,7 +1808,7 @@ elmList.forEach(elm => {/* same as above */});
 
 // ---------------------------------
 // SIGNATURE: .toggleClass(className, state)
-$jqList.toggleClass();
+$jqList.toggleClass(className, state);
 
 state ? elm.classList.add(className) : elm.classList.remove(className);
 
@@ -1818,7 +1822,7 @@ $jqList.toggleClass();
 
 // ---------------------------------
 // SIGNATURE: .toggleClass([state])
-$jqList.toggleClass();
+$jqList.toggleClass(state);
 
 // TODO
 
@@ -1835,7 +1839,7 @@ elmList.forEach(elm => {/* same as above */});
 // SIGNATURE: .trigger(eventType, [extraParameters])
 $jqList.trigger(eventType, {key1: 'data1', key2: 'data2'});
 
-elm.dispatchEvent(new CustomEvent(eventType), {detail: {key1: 'data1', key2: 'data2'}});
+elm.dispatchEvent(new CustomEvent(eventType, {detail: {key1: 'data1', key2: 'data2'}}));
 
 elmList.forEach(elm => {/* same as above */});
 
