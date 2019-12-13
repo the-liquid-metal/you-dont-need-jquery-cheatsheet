@@ -22,7 +22,7 @@
 
 **How to read:**
 * One unit of solution is defined as a consecutive number of lines and ended
-  with blank line. The example of problem below has 3 solutions.
+  with blank line. The example of problem below has 2 solutions.
   ```js
   $jqList.attr(attrName);
 
@@ -49,8 +49,8 @@
 **Real code reality:**
 
 We know that jQuery instance methods can act as setter and getter. It is correct
-to write *setter* like this one `$jqList.attr(attrName, anyStr);`. But the solutions
-bellow, you will see many *getter* written like setter is, like this one
+to write _setter_ like this one `$jqList.attr(attrName, anyStr);`. But the solutions
+bellow, you will see many _getter_ written like setter is, like this one
 `$jqList.attr(attrName);`. But there is no such thing like that, right?!. The
 realistic is like this one `let pocket = $jqList.attr(attrName);` or like this
 one `if ($jqList.attr(attrName)) {/* ... */}`. The reason we write like that
