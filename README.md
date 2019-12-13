@@ -111,6 +111,8 @@ if (elm) {
 
 // unsafety if you are not sure
 attr = elmList[0].getAttribute(attrName);
+
+// safety
 if (elmList[0]) {
     attr = elmList[0].getAttribute(attrName);
 }
