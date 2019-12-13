@@ -121,6 +121,7 @@ if (elmList[0]) {
 But if you see `elmList.forEach(/* ... */)`, this is always safety.
 
 **O God, jQuery makes me in trouble**
+
 We know that jQuery uses exoteric approach to handle function arguments. A common
 knowledge on many popular language is: optional arguments appears from the rightmost
 to left. in jQuery, the 1st optional argument is still intuitive, it is placed on
