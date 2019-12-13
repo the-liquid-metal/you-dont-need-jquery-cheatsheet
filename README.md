@@ -44,13 +44,31 @@
   elm.addEventListener("click", func); // in this case is func
   ```
 
+* if you see incomplete solution marked with `/* same as above */` like this one
+  ```js
+  $jqList.attr(attrName, nonMarkupStr);
+
+  elm.setAttribute(attrName, nonMarkupStr);
+
+  elmList.forEach(elm => {/* same as above */});
+  ```
+  then you have to read it as this one:
+  ```js
+  $jqList.attr(attrName, nonMarkupStr);
+
+  elm.setAttribute(attrName, nonMarkupStr);
+
+  elmList.forEach(elm => elm.setAttribute(attrName, nonMarkupStr));
+  ```
+  Note that the curly braces is not necessary to be included.
+  
 * If you see ` // TODO` this means i need your help to fill this space.
 
 **Real code reality:**
 
 We know that jQuery instance methods can act as setter and getter. It is correct
 to write _setter_ like this one `$jqList.attr(attrName, anyStr);`. But the solutions
-bellow, you will see many _getter_ written like setter is, like this one
+bellow, you will see many _getter_ is written like setter, like this one
 `$jqList.attr(attrName);`. But there is no such thing like that, right?!. The
 realistic is like this one `let pocket = $jqList.attr(attrName);` or like this
 one `if ($jqList.attr(attrName)) {/* ... */}`. The reason we write like that
@@ -84,26 +102,15 @@ is actually as verbose as this one:
 $jqList.attr(attrName);
 
 // unsafety if you are not sure
-attr = document.querySelector(selector).getAttribute(attrName);
-
-// safety
-pocket = document.querySelector(selector);
-if (pocket) {
-    attr = pocket.getAttribute(attrName);
-}
-
-// unsafety if you are not sure
 attr = elm.getAttribute(attrName);
 
 // safety
 if (elm) {
-    elm.getAttribute(attrName);
+    attr = elm.getAttribute(attrName);
 }
 
 // unsafety if you are not sure
 attr = elmList[0].getAttribute(attrName);
-
-// safety
 if (elmList[0]) {
     attr = elmList[0].getAttribute(attrName);
 }
@@ -503,17 +510,17 @@ otherElm.appendChild(elm);
 
 // =============================================================================
 // SIGNATURE: .attr(attributeName)
-$jqList.attr("placeholder");
+$jqList.attr(attrName);
 
-elm.getAttribute("placeholder");
+elm.getAttribute(attrName);
 
-elmList[0].getAttribute("placeholder");
+elmList[0].getAttribute(attrName);
 
 // ---------------------------------
 // SIGNATURE: .attr(attributeName, value)
-$jqList.attr(attributeName, nonMarkupStr);
+$jqList.attr(attrName, nonMarkupStr);
 
-elm.setAttribute(attributeName, nonMarkupStr);
+elm.setAttribute(attrName, nonMarkupStr);
 
 elmList.forEach(elm => {/* same as above */});
 
