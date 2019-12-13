@@ -60,7 +60,7 @@
 
   elmList.forEach(elm => elm.setAttribute(attrName, nonMarkupStr));
   ```
-  Note that the curly braces is not required if the above solution is only single line.
+  Note that the curly braces is not required if the above solution is single line.
   
 * If you see ` // TODO` this means i need your help to fill this space.
 
@@ -119,6 +119,22 @@ if (elmList[0]) {
 ```
 
 But if you see `elmList.forEach(/* ... */)`, this is always safety.
+
+**O God, jQuery makes me in trouble**
+We know that jQuery uses exoteric approach to handle function arguments. A common
+knowledge on many popular language is: optional arguments appears from the rightmost
+to left. in jQuery, the 1st optional argument is still intuitive, it is placed on
+the right. The problem is additional optional arguments, jQuery places them at the
+center. This is the source of confusing for people came from another language. But,
+jQuery has been documenting it successfully.
+
+There is no simple way to document the conversion from jQuery to vanilla js and
+convert jQuery documentation style to common documentation style. The output is:
+there are solutions which must references to other solution. This is what i don't
+want to get, but i can't avoid it.
+
+As a reader, you have to understand well optional arguments which you deal with,
+otherwise you assign wrong argument or lose that argument in the middle of conversion.
 
 <br/>
 
