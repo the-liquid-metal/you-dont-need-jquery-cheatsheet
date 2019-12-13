@@ -21,29 +21,16 @@
 3. then press `[ENTER]`
 
 **How to read:**
-* This script is designed to be self documented. Rather than written like this:
-  ```js
-  $(param).attr(attribute); // param is CSS selector, HTMLElement, HTMLElement collection
-  ```
-  it would be more elegance and natural if it written like this:
-  ```js
-  $jqList.attr(attribute);
-  ```
-  You have to interpret it as `$(selector).attr(attribute);` or as
-  `$jqList.attr(attribute);` or as `$(elmList).attr(attribute);`
-
 * One unit of solution is defined as a consecutive number of lines and ended
   with blank line. The example of problem below has 3 solutions.
   ```js
-  $jqList.attr(attribute);
+  $jqList.attr(attrName);
 
-  document.querySelectorAll(selector)[0].getAttribute(attribute);
+  elm.getAttribute(attrName);
 
-  elm.getAttribute(attribute);
-
-  elmList[0].getAttribute(attribute);
+  elmList[0].getAttribute(attrName);
   ```
-  A problem and its solution(s) is (are) boundaried by `// =====` or by `// -----`.
+  A problem and its solutions are bounded by `// =====` or by `// -----`.
 
 * If operand appears as hardcoded value (whether it is string, number, boolean,
   or null), than you shoud not change it with any value, otherwise the behaviour /
@@ -61,13 +48,14 @@
 
 **Real code reality:**
 
-We know that jQuery instance methods can act as setter and getter. In the solutions
-bellow, you will see many getter written like this one `$jqList.attr(attribute);`.
-But there is no such thing like that, right?!. The realistic is like this one
-`let pocket = $jqList.attr(attribute);` or like this one
-`if ($jqList.attr(attribute)) {/* ... */}`. The reason we
-write like that kind is to shorten the line, and eliminate all possibility which
-can bloat this article.
+We know that jQuery instance methods can act as setter and getter. It is correct
+to write *setter* like this one `$jqList.attr(attrName, anyStr);`. But the solutions
+bellow, you will see many *getter* written like setter is, like this one
+`$jqList.attr(attrName);`. But there is no such thing like that, right?!. The
+realistic is like this one `let pocket = $jqList.attr(attrName);` or like this
+one `if ($jqList.attr(attrName)) {/* ... */}`. The reason we write like that
+kind is to shorten the line, and eliminate all possibility which can bloat this
+article. So you have to read carefully whether the solutions is for setter or getter.
 
 In other side, we can't avoid the fact that a particular jQuery method has many
 variant, and it is very tolerant with it's parameter. We decided not to create a
@@ -78,36 +66,46 @@ readers don't have to care about other statement.
 Not like vanilla js which gives you 3 kind of output (a `null`, a particular
 single object, or a collection of particular object), jQuery always gives you a
 collection. This design, guaranties you to call any instance method of its member
-item safely. This situation is not not applicable with vanilla js, you have to
-know exactly what type of the output is, and have to make additional condition.
-Unless you are sure with what you are dealing with, most solution in this article
-are not safe. The exact solutions are like this:
+item safely. This situation is not applicable with vanilla js, you have to know
+exactly what type of the output is, and have to make additional condition. Unless
+you are sure with what you are dealing with, most solution in this article are
+not safe. So, a simple unit of solution like this one:
 ```js
-$jqList.attr(attribute);
+$jqList.attr(attrName);
+
+elm.getAttribute(attrName);
+
+elmList[0].getAttribute(attrName);
+```
+
+is actually as verbose as this one:
+
+```js
+$jqList.attr(attrName);
 
 // unsafety if you are not sure
-attr = document.querySelector(selector).getAttribute(attribute);
+attr = document.querySelector(selector).getAttribute(attrName);
 
 // safety
 pocket = document.querySelector(selector);
 if (pocket) {
-    attr = pocket.getAttribute(attribute);
+    attr = pocket.getAttribute(attrName);
 }
 
 // unsafety if you are not sure
-attr = elm.getAttribute(attribute);
+attr = elm.getAttribute(attrName);
 
 // safety
 if (elm) {
-    elm.getAttribute(attribute);
+    elm.getAttribute(attrName);
 }
 
 // unsafety if you are not sure
-attr = elmList[0].getAttribute(attribute);
+attr = elmList[0].getAttribute(attrName);
 
 // safety
 if (elmList[0]) {
-    attr = elmList[0].getAttribute(attribute);
+    attr = elmList[0].getAttribute(attrName);
 }
 ```
 
@@ -151,26 +149,44 @@ let elm = document.createElement("div");
 /** @type {NodeList} */
 let elmList = document.querySelectorAll("div");
 
+/** @type {jQuery} */
+let $jqList = $(".my-class");
+
 /** @type {HTMLElement} */
 let otherElm = document.createElement("div");
 
 /** @type {string} */
-let standardEventName = "click";
+let stdEventName = "click";
 
 /** @type {string} */
-let nonStandardEventName = "any";
+let nonStdEventName = "any";
 
 /** @type {string} */
-let eventName = standardEventName || nonStandardEventName;
+let eventName = stdEventName || nonStdEventName;
 
 /** @type {string} */
-let markupString = "<div>hello</div>";
+let standardAttrName = "placeholder";
 
 /** @type {string} */
-let nonMarkupString = "hello";
+let nonStandardAttrName = "any";
+
+/** @type {string} */
+let attrName = standardAttrName || nonStandardAttrName;
+
+/** @type {string} */
+let className = "any";
+
+/** @type {string} */
+let markupStr = "<div>hello</div>";
+
+/** @type {string} */
+let nonMarkupStr = "hello";
+
+/** @type {string} */
+let anyStr = markupStr || nonMarkupStr;
 
 /** @type {number} */
-let number = 1000;
+let num = 1000;
 
 /** @type {Function} */
 let func = function(){};
@@ -337,9 +353,9 @@ elmList.forEach((item, idx) => item.classList.add((idx % 2) ? "odd" : "even"));
 
 // =============================================================================
 // SIGNATURE: .after(content, [content])
-$jqList.after(markupString);
+$jqList.after(markupStr);
 
-elm.insertAdjacentHTML("afterend", markupString);
+elm.insertAdjacentHTML("afterend", markupStr);
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -431,22 +447,22 @@ elmList.forEach(elm => {/* same as above */});
 
     // ---------------------------------
     // SIGNATURE: .append(content, [content])
-    $jqList.append(otherElm || nonMarkupString);
+    $jqList.append(otherElm || nonMarkupStr);
 
-    elm.append(otherElm || nonMarkupString);
+    elm.append(otherElm || nonMarkupStr);
 
     elmList.forEach(elm => elm.append(otherElm.cloneNode(true)));
     otherElm.remove();
 
-    elmList.forEach(elm => elm.append(nonMarkupString));
+    elmList.forEach(elm => elm.append(nonMarkupStr));
 
     // ---------------------------------
     // SIGNATURE: .append(content, [content])
-    $jqList.append(markupString);
+    $jqList.append(markupStr);
 
-    elm.append((new Range).createContextualFragment(markupString).firstElementChild);
+    elm.append((new Range).createContextualFragment(markupStr).firstElementChild);
 
-    newElm = (new Range).createContextualFragment(markupString).firstElementChild;
+    newElm = (new Range).createContextualFragment(markupStr).firstElementChild;
     elmList.forEach(elm => elm.append(newElm.cloneNode(true)));
 
     // ---------------------------------
@@ -495,9 +511,9 @@ elmList[0].getAttribute("placeholder");
 
 // ---------------------------------
 // SIGNATURE: .attr(attributeName, value)
-$jqList.attr(attributeName, nonMarkupString);
+$jqList.attr(attributeName, nonMarkupStr);
 
-elm.setAttribute(attributeName, nonMarkupString);
+elm.setAttribute(attributeName, nonMarkupStr);
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -516,9 +532,9 @@ $jqList.attr();
 
 // =============================================================================
 // SIGNATURE: .before(content, [content])
-$jqList.before(markupString);
+$jqList.before(markupStr);
 
-elm.insertAdjacentHTML("beforebegin", markupString);
+elm.insertAdjacentHTML("beforebegin", markupStr);
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -990,9 +1006,9 @@ $jqList.html();
 
 // ---------------------------------
 // SIGNATURE: .html(htmlString)
-$jqList.html(markupString);
+$jqList.html(markupStr);
 
-elm.innerHTML = markupString;
+elm.innerHTML = markupStr;
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -1563,9 +1579,9 @@ otherElm.replaceWith(elm);
 
 // =============================================================================
 // SIGNATURE: .replaceWith(newContent)
-$jqList.replaceWith(markupString);
+$jqList.replaceWith(markupStr);
 
-elm.replaceWith(markupString);
+elm.replaceWith(markupStr);
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -1745,9 +1761,9 @@ elmList[0].textContent;
 
 // ---------------------------------
 // SIGNATURE: .text(text)
-$jqList.text(nonMarkupString);
+$jqList.text(nonMarkupStr);
 
-elm.textContent = nonMarkupString;
+elm.textContent = nonMarkupStr;
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -1978,9 +1994,9 @@ elmList[0].value;
 
 // ---------------------------------
 // SIGNATURE: .val(value)
-$jqList.val(nonMarkupString);
+$jqList.val(nonMarkupStr);
 
-elm.value = nonMarkupString;
+elm.value = nonMarkupStr;
 
 elmList.forEach(elm => {/* same as above */});
 
@@ -2016,16 +2032,16 @@ elmList.forEach((elm, idx) => elm.style.width = (idx * 5 + width) + 'px');
 
 // =============================================================================
 // SIGNATURE: .wrap(wrappingElement)
-$jqList.wrap(otherElm || markupString);
+$jqList.wrap(otherElm || markupStr);
 
 elm.parentNode.insertBefore(otherElm.cloneNode(true), elm).appendChild(elm);
 
 elmList.forEach(elm => {/* same as above */});
 
-newElm = (new Range).createContextualFragment(markupString).firstElementChild;
+newElm = (new Range).createContextualFragment(markupStr).firstElementChild;
 elm.parentNode.insertBefore(newElm, elm).appendChild(elm);
 
-newElm = (new Range).createContextualFragment(markupString).firstElementChild;
+newElm = (new Range).createContextualFragment(markupStr).firstElementChild;
 elmList.forEach(elm => elm.parentNode.insertBefore(newElm.cloneNode(true), elm).appendChild(elm));
 
 // ---------------------------------
