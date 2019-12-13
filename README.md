@@ -60,7 +60,7 @@
 
   elmList.forEach(elm => elm.setAttribute(attrName, nonMarkupStr));
   ```
-  Note that the curly braces is not necessary to be included.
+  Note that the curly braces is not required if the above solution is only single line.
   
 * If you see ` // TODO` this means i need your help to fill this space.
 
